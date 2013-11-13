@@ -1,0 +1,18 @@
+{
+    "name": "ee-projet-univ/zf2-blog-app",
+    "description": "ZF2 Blog module application",
+    "license": "BSD-3-Clause",
+    "keywords": ["zf2","blog"],
+    "homepage": "http://ee-projet-univ.github.io/zf2-blog-app",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "*@stable",
+        "neilime/zf2-assets-bundle": "*@stable",
+        "neilime/zf2-twb-bundle": "*@stable", 
+        "zf-commons/zfc-user-doctrine-orm": "*@stable",
+        "bjyoungblood/bjy-authorize": "*@stable"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*@stable"
+    }    
+}

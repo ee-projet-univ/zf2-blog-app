@@ -6,3 +6,4 @@ extras/documentation
 /.settings
 /.buildpath
 /.project
+/vendor
