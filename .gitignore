@@ -7,3 +7,5 @@ extras/documentation
 /.buildpath
 /.project
 /vendor
+/nbproject/
+composer.lock
