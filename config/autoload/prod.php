@@ -1,7 +1,7 @@
 <?php
 return array(
     'asset_bundle' => array(
-        'production' => false
+        'production' => true
     ),
     'doctrine' => array(
         'connection' => array(
@@ -11,14 +11,6 @@ return array(
                     'password' => '',
                 )
             )
-        )
-    ),
-    'zenddevelopertools' => array(
-        'profiler' => array(
-            'enabled' => true,
-        ),
-        'toolbar' => array(
-            'enabled' => true,
         )
     )
 );

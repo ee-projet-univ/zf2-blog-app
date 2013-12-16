@@ -1,9 +1,10 @@
 <?php
-$env = getenv('APP_ENV') ?: 'production';
+$env = getenv('APP_ENV') ?: 'prod';
 return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
-        'Application','AssetsBundle','TwbBundle','DoctrineModule','DoctrineORMModule','BjyAuthorize','ZfcBase','ZfcUser','ZfcUserDoctrineORM'
+        'ZendDeveloperTools','AssetsBundle','TwbBundle','DoctrineModule','DoctrineORMModule','ZfcBase','ZfcUser','ZfcUserDoctrineORM','BjyAuthorize',
+        'Application'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

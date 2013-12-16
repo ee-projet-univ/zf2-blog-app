@@ -8,11 +8,13 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "*@stable",
         "neilime/zf2-assets-bundle": "*@stable",
-        "neilime/zf2-twb-bundle": "*@stable", 
+        "neilime/zf2-twb-bundle": "*@stable",
         "zf-commons/zfc-user-doctrine-orm": "*@stable",
-        "bjyoungblood/bjy-authorize": "*@stable"
+        "bjyoungblood/bjy-authorize": "*@stable",
+        "zendframework/zend-developer-tools": "*@stable",
+        "bjyoungblood/bjy-profiler": "*@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "*@stable"
-    }    
+    }
 }

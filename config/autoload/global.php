@@ -19,9 +19,20 @@ return array(
                 'js/jquery.min.js',
                 'js/bootstrap.min.js'
             ),
-            'media' => array('img')
+            'media' => array('img','fonts')
         )
     ),
     //Default locale
-    'translator' => array('locale' => 'fr_FR')
+    'translator' => array('locale' => 'fr_FR'),
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'params' => array(
+                    'host' => '127.0.0.1',
+                    'dbname' => 'zf2-blog-app'
+                )
+            )
+        )
+    )
 );
