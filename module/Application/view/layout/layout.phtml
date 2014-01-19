@@ -37,8 +37,20 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- TODO: N’afficher que si pas connecté -->
-                        <li><a href="<?php echo $this->url('register') ?>">S’inscrire</a></li>
-                        <li><a href="<?php echo $this->url('login') ?>">Se connecter</a></li>                        
+                        <?php
+                        if(!$this->zfcUserIdentity()) {
+                            ?>
+                            <li><a href="/user/register">S’inscrire</a></li>
+                            <li><a href="/user/login">Se connecter</a></li>                        
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <li><a href="/user">Mon compte</a></li>
+                            <li><a href="/user/logout">Se déconnecter</a></li>
+                            <?php
+                        }
+                        ?>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
