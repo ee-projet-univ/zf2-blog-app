@@ -78,6 +78,20 @@ return array(
                     ),
                 ),
             ),
+            'login' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/app/login[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Login',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -104,6 +118,8 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Search' => 'Application\Controller\SearchController',
             'Application\Controller\Register' => 'Application\Controller\RegisterController',
+            'Application\Controller\Login' => 'Application\Controller\LoginController',
+            'Application\Controller\Logout' => 'Application\Controller\LogoutController',
         ),
     ),
     'view_manager' => array(
@@ -118,6 +134,9 @@ return array(
             'application/search/index' => __DIR__ . '/../view/application/search/index.phtml',
             'application/register/index' => __DIR__ . '/../view/application/register/index.phtml',
             'application/register/submit' => __DIR__ . '/../view/application/register/submit.phtml',
+            'application/login/index' => __DIR__ . '/../view/application/login/index.phtml',
+            'application/login/submit' => __DIR__ . '/../view/application/login/submit.phtml',
+            'application/logout/index' => __DIR__ . '/../view/application/logout/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
