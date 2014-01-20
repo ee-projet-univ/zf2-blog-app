@@ -12,7 +12,8 @@
         "zf-commons/zfc-user-doctrine-orm": "*@stable",
         "bjyoungblood/bjy-authorize": "*@stable",
         "zendframework/zend-developer-tools": "*@stable",
-        "bjyoungblood/bjy-profiler": "*@stable"
+        "bjyoungblood/bjy-profiler": "*@stable",
+        "michelf/php-markdown": "*@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "*@stable"
