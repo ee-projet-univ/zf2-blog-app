@@ -1,0 +1,8 @@
+<h3><?php echo $this->layout()->title; ?></h3>
+<?php
+if($this->isValid === true) echo 'Formulaire envoyé';
+else {
+    if(!empty($this->error)) echo $this->alert($this->error, 'alert-error', false);
+    echo $this->form($this->form);
+}
+?>

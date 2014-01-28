@@ -64,6 +64,17 @@ return array(
                     ),
                 ),
             ),
+            'post-create' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/post/create',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Post',
+                        'action'        => 'create',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -74,6 +85,13 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+    ),
+    'factories' => array(
+        // Form
+        'PostForm' => 'Application\Factory\Form\PostFormFactory',
+ 
+        // Services
+        'PostService' => 'Application\Factory\PostServiceFactory',
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -89,6 +107,7 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Search' => 'Application\Controller\SearchController',
+            'Application\Controller\Post' => 'Application\Controller\PostController',
         ),
     ),
     'view_manager' => array(
@@ -99,8 +118,9 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
-            'application/search/index' => __DIR__ . '/../view/application/search/index.phtml',
+            'app/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'app/search/index' => __DIR__ . '/../view/application/search/index.phtml',
+            'post/create' => __DIR__ . '/../view/application/post/create.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
