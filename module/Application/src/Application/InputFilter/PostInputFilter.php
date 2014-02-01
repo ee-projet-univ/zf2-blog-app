@@ -4,7 +4,7 @@ class PostInputFilter extends \Zend\InputFilter\InputFilter {
     /**
      * Constructor
      */
-    public function __construct(){
+    public function __construct(\Application\Repository\PostRepository $oPostRepository) {
         $this->add(array(
             'name' => 'title',
             'required' => true,

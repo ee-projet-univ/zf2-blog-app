@@ -7,12 +7,9 @@ class PostFormFactory implements \Zend\ServiceManager\FactoryInterface {
      * @return \Application\Form\PostForm
      */
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $oServiceLocator){
-        $oTranslator = $oServiceLocator->get('translator');
         $oForm = new \Application\Form\PostForm('post');
-        return $oForm->setTranslator($oTranslator)
-        ->setInputFilter(new \Application\InputFilter\PostInputFilter(
-            $oServiceLocator->get('Application\Repository\PostRepository'),
-            $oTranslator
+        return $oForm->setInputFilter(new \Application\InputFilter\PostInputFilter(
+            $oServiceLocator->get('Application\Repository\PostRepository')
         ))->prepare();
     }
 }

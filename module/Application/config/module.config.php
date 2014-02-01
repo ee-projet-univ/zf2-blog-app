@@ -86,13 +86,13 @@ return array(
             'translator' => 'MvcTranslator',
             'zfcuser_doctrine_em' => 'Doctrine\ORM\EntityManager'
         ),
-    ),
-    'factories' => array(
-        // Form
-        'PostForm' => 'Application\Factory\Form\PostFormFactory',
- 
-        // Services
-        'PostService' => 'Application\Factory\PostServiceFactory',
+        'factories' => array(
+            // Form
+            'PostForm' => 'Application\Factory\Form\PostFormFactory',
+
+            // Services
+            'PostService' => 'Application\Factory\PostServiceFactory',
+        ),
     ),
     'translator' => array(
         'locale' => 'en_US',

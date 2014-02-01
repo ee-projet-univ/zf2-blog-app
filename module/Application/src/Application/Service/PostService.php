@@ -10,8 +10,8 @@ class PostService {
     public function createPost(array $aRegisterData){
         // Create Post
         $oPost = new \Application\Entity\PostEntity();
-        $this->getServiceLocator()->get('Application\Repository\PostRepository')->create(/* TODO: */
-        );
+        $this->getServiceLocator()->get('Application\Repository\PostRepository')->create($oPost);
+        // TODO: Call Post Entity methods
 
         return $this;
     }

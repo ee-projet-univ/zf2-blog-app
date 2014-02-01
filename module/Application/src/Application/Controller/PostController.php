@@ -9,7 +9,7 @@ class PostController extends AbstractActionController
     public function createAction()
     {
         //Define title
-        $this->layout()->title = $this->getServiceLocator()->get('Translator')->translate('create-post');
+        $this->layout()->title = 'Nouveau billet';
 
         //Assign form
         $this->view->form = $this->getServiceLocator()->get('PostForm');
@@ -17,7 +17,7 @@ class PostController extends AbstractActionController
                 $this->getRequest()->isPost()
                 && $this->view->form->setData($this->params()->fromPost())->isValid()
                 && ($aData = $this->view->form->getData())
-                && $this->getServiceLocator()->get('PostService')->register($aData)
+                && $this->getServiceLocator()->get('PostService')->createPost($aData)
         )$this->view->isValid = true;
         return $this->view;
     }
