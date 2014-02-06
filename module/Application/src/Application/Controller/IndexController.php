@@ -21,8 +21,9 @@ class IndexController extends AbstractActionController
         
         $nb_pages = ceil(count($nb_posts) / 5);
 
-        $page = (isset($_GET['pid']) ? intval($_GET['page']) : 1);
+        $page = intval($this->getEvent()->getRouteMatch()->getParam('page'));
         if($page == 0) ++$page;
+        if($page > $nb_pages) $page = 1;
 
         $offset = ($page - 1) * 5;
         $limit = 5;

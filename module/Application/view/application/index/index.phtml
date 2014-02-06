@@ -16,7 +16,12 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <p><?php echo $post['content']; ?></p>
+                    <p>
+                        <?php
+                        if(strlen($post['content'] > 300)) echo substr($post['content'], 0, 300).' […]';
+                        else echo $post['content'];
+                        ?>
+                    </p>
                     <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>">Lire la suite &raquo;</a></p>
                 </div>
                 <div class="panel-footer">
@@ -29,13 +34,30 @@
 
         <div class="text-center">
             <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">…</a></li>
-                <li><a href="">9</a></li>
-                <li><a href="">10</a></li>
-                <li><a href="">&raquo;</a></li>
+                <?php
+                // Page précédente
+                if($this->page == 1) {
+                    echo '<li class="disabled"><a href="#">&laquo;</a></li>';
+                }
+                else {
+                    echo '<li><a href="'.$this->url('home', array('page' => ($this->page - 1))).'">&laquo;</a></li>';
+                }
+
+                // Liste des pages
+                for($i = 1; $i <= $nb_pages; ++$i) {
+                    echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
+                       . '<a href="'.$this->url('home', array('page' => $i)).'">'.$i.'</a>'
+                       . '</li>';
+                }
+
+                // Page suivante
+                if($this->page == $this->nb_pages) {
+                    echo '<li class="disabled"><a href="#">&raquo;</a></li>';
+                }
+                else {
+                    echo '<li><a href="'.$this->url('home', array('page' => ($this->page + 1))).'">&raquo;</a></li>';
+                }
+                ?>
             </ul>
         </div>
     </div>
@@ -60,7 +82,7 @@
                 <h3>Recherche</h3>
                 <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
                     <div class="form-group">
-                        <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche..." />
+                        <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche…" />
                     </div>
                     <div class="form-group">
                         <input type="submit" value="OK" class="btn btn-default" />
