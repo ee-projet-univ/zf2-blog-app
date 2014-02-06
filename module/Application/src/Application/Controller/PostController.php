@@ -24,8 +24,13 @@ class PostController extends AbstractActionController
     
     public function viewAction()
     {
+        $this->view = new ViewModel();
+
+        $this->layout()->title = 'Consultation d’un billet';
+
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
         //$post = $em->find("Post", (int)$id);
-        return new ViewModel();
+
+        return $this->view;
     }
 }

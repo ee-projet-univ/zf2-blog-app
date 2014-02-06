@@ -3,7 +3,6 @@
 </div>
 
 <div class="row">
-
     <div class="col-md-8">
         <?php 
         foreach($this->post as $post)
@@ -11,22 +10,23 @@
             ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"> <a href=""><?php echo $post['title']; ?></a> <span class="pull-right">par <strong>Zeldren</strong></span></h3>
+                    <h3 class="panel-title">
+                        <a href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>"><?php echo $post['title']; ?></a>
+                        <span class="pull-right">par <strong>Zeldren</strong></span>
+                    </h3>
                 </div>
                 <div class="panel-body">
-                    <p><?php echo $post['content']; ?><p>
-                        <a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a>
-                    </p>
+                    <p><?php echo $post['content']; ?></p>
+                    <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>">Lire la suite &raquo;</a></p>
                 </div>
                 <div class="panel-footer">
-                    <p class="panel-title"><span class="zf-green">Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2"/></p>
+                    <p class="panel-title"><span class="zf-green">Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
                 </div>
             </div>
             <?php
         }
         ?>
-        
-        <!-- TODO: Pagination -->
+
         <div class="text-center">
             <ul class="pagination">
                 <li class="disabled"><a href="#">&laquo;</a></li>
@@ -52,44 +52,46 @@
                     <p class="text-center"><b><?php echo $this->zfcUserIdentity()->getEmail(); ?></b></p>
                     <p class="text-center"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail()); ?></p>
                     <p class="text-center"><a class="btn btn-success" href="">Ajouter un billet</a></p>
-                        <hr />
+                    <hr />
                     <?php
                 }
                 ?>
-                    <h3>Recherche</h3>
-                    <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
-                        <div class="form-group">
-                            <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche..." />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="OK" class="btn btn-default" />
-                        </div>
-                    </form>
-                        <hr />
-                    <!-- Exemples de tags, TODO: à générer -->
-                    <h3>Tags populaires</h3>
-                    <p>
-                        <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                        <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                        <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                    </p>
+
+                <h3>Recherche</h3>
+                <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
+                    <div class="form-group">
+                        <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche..." />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="OK" class="btn btn-default" />
+                    </div>
+                </form>
+                <hr />
+
+                <!-- Exemples de tags, TODO: à générer -->
+                <h3>Tags populaires</h3>
+                <p>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                </p>
             </div>
         </div>
     </div>

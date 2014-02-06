@@ -1,61 +1,66 @@
-<div class="row">
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->layout()->title; ?> <span class="pull-right">par <!-- TODO : Récuperer name_user --><a href="#">Réc. pseudo</a></span></h3>
-            </div>
-            <div class="panel-body">
-                <!-- TODO: Récupération du contenu du billet ici -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</p>
-                <p>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-star"></span> Notez !
-                    </button>
-                </p>
-            </div>
-            <div class="panel-footer">
-                <p class="panel-title"><span class="zf-green">Posté le <!-- TODO : Récuperer date_create --><?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2"/></p>
-            </div>
+<h3><?php echo $this->layout()->title; ?></h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <strong>Titre du billet</strong>
+            <span class="pull-right">par <strong>Zeldren</strong></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p><em>Dernière modification le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></em></p>
+    </div>
+    <div class="panel-footer">
+        <p class="panel-title"><span class="zf-green">Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Commentaires (2)</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 170px">Pseudo</th>
+                    <th>Commentaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>julien.papasian</strong></td>
+                    <td>Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></td>
+                </tr>
+                <tr>
+                    <td><img src="http://www.gravatar.com/avatar/e78ffb90e799b023e93aa1ea2f568558?s=150&d=mm&r=g" alt="" /></td>
+                    <td>Commentaire1</td>
+                </tr>
+                <tr>
+                    <td><strong>m.brenguier</strong></td>
+                    <td>Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></td>
+                </tr>
+                <tr>
+                    <td><img src="http://www.gravatar.com/avatar/805da4864c506f7a6f0c6a236553e8ce?s=150&d=mm&r=g" alt="" /></td>
+                    <td>Commentaire2</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">…</a></li>
+                <li><a href="">9</a></li>
+                <li><a href="">10</a></li>
+                <li><a href="">&raquo;</a></li>
+            </ul>
         </div>
     </div>
-    
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Commentaires ({récupérer nombres de billets})</h3>
-            </div>
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item">Premier commentaire</li>
-                    <li class="list-group-item">Deuxième commentaire</li>
-                    <li class="list-group-item">Troisième commentaire</li>
-                    <li class="list-group-item">Quatrième commentaire</li>
-                    <li class="list-group-item">Cinquième commentaire</li>
-                    <li class="list-group-item">Premier commentaire</li>
-                    <li class="list-group-item">Deuxième commentaire</li>
-                    <li class="list-group-item">Troisième commentaire</li>
-                    <li class="list-group-item">Quatrième commentaire</li>
-                    <li class="list-group-item">Cinquième commentaire</li>
-                </ul>
-                
-                <!-- TODO: Pagination -->
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">…</a></li>
-                        <li><a href="">9</a></li>
-                        <li><a href="">10</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <!--TODO : formulaire d'ajout de commentaires -->
-            </div>
-        </div>
+    <div class="panel-footer">
+        <!--TODO : formulaire d'ajout de commentaires -->
     </div>
-    
-    
 </div>

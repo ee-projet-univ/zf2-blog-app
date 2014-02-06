@@ -17,19 +17,26 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');  
-        $nb_post = $em->getRepository('Application\Entity\Post')->findAll();
+        $nb_posts = $em->getRepository('Application\Entity\Post')->findAll();
         
-        $nb_page = ceil(count($nb_post) / 5);
-        
-        $offset = 0;
+        $nb_pages = ceil(count($nb_posts) / 5);
+
+        $page = (isset($_GET['pid']) ? intval($_GET['page']) : 1);
+        if($page == 0) ++$page;
+
+        $offset = ($page - 1) * 5;
         $limit = 5;
         
         $dql = $em->createQuery('SELECT p '
                                .'FROM Application\Entity\Post p '
                                .'WHERE p.is_deleted = 0 '
-                               .'ORDER BY p.date_create DESC ');
+                               .'ORDER BY p.date_create DESC ')
+                   ->setFirstResult($offset)
+                   ->setMaxResults($limit);
         
         $five_latest_post = $dql->getArrayResult();
-        return new ViewModel(array('pagination' => $nb_page, 'post' => $five_latest_post));
+        return new ViewModel(array('page' => $page,
+                                   'nb_pages' => $nb_pages,
+                                   'post' => $five_latest_post));
     }
 }
