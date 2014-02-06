@@ -7,21 +7,37 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><a href="">Dernier billet</a></h3>
+                <h3 class="panel-title"> <a href="">Dernier billet</a> <span class="pull-right">par <a href="#">Zeldren</a></span></h3>
             </div>
             <div class="panel-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</p>
-                <p><a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a></p>
+                <p>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-star"></span> Notez !
+                    </button>
+                    <a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a>
+                </p>
+            </div>
+            <div class="panel-footer">
+                <p class="panel-title"><span class="zf-green">Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2"/></p>
             </div>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><a href="">Avant-dernier billet</a></h3>
+                <h3 class="panel-title"><a href="">Avant-dernier billet</a><span class="pull-right">par <a href="#">Zeldren</a></span></h3>
             </div>
             <div class="panel-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.</p>
-                <p><a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a></p>
+                <p>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-star"></span> Notez !
+                    </button>
+                    <a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a>
+                </p>
+            </div>
+            <div class="panel-footer">
+                <p class="panel-title"><span class="zf-green">Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2"/></p>
             </div>
         </div>
         
@@ -45,9 +61,14 @@
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-body">
+                
+                <p class="text-center"><b>Pseudonyme</b></p>
+                <p class="text-center"><a class="btn btn-success" href="">Ajouter un billet</a></p>
+                
+                <img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2"/>
                 <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
                     <div class="form-group">
-                        <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche" />
+                        <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche..." />
                     </div>
                     <div class="form-group">
                         <input type="submit" value="OK" class="btn btn-default" />
@@ -59,6 +80,23 @@
                     <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
                     <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
                     <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
                 </p>
             </div>
         </div>

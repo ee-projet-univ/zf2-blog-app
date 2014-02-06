@@ -1,2 +1,65 @@
-<h2>Résultats de la recherche</h2>
+<div class="jumbotron">
+    <h2>Résultats de la recherche pour «<span class="zf-green">Lorem</span>» !</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><a href="">Dernier billet</a> <a class="pull-right" href="#">par Zeldren</a></h3>
+            </div>
+            <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus...</p>
+                <p><a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a></p>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><a href="">Avant-dernier billet</a> <a class="pull-right" href="#">par Zeldren</a></h3>
+            </div>
+            <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus...</p>
+                <p><a class="btn btn-success pull-right" href="">Lire la suite &raquo;</a></p>
+            </div>
+        </div>
+    
+    <!-- TODO: Pagination -->
+        <div class="text-center">
+            <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">…</a></li>
+                <li><a href="">9</a></li>
+                <li><a href="">10</a></li>
+                <li><a href="">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
+                    <div class="form-group">
+                        <input id="tag" class="form-control" name="tag" type="text" placeholder="Recherche" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="OK" class="btn btn-default" />
+                    </div>
+                </form>
+                <!-- Exemples de tags, TODO: à générer -->
+                <h3>Tags populaires</h3>
+                <p>
+                    <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
+                    <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
+                    <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</div>
 <!-- TODO -->
