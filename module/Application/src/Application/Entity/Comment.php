@@ -17,7 +17,7 @@ class Comment
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @\Doctrine\ORM\Mapping\OneToOne(targetEntity="Application\Entity\User")
+     * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Application\Entity\User")
      * @\Doctrine\ORM\Mapping\JoinTable(name="comments_users",
      *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="comment_id", referencedColumnName="id")},
      *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="user_id", referencedColumnName="id")}
