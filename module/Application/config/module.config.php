@@ -64,14 +64,18 @@ return array(
                     ),
                 ),
             ),
-            'post-create' => array(
+            'post' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/post/create',
+                    'route' => '/post[/:action[/:pid]]',
+                    'constraints' => array(
+                        'action' => '(view|create|update|delete)',
+                        'pid' => '[0-9]*',
+                    ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller'    => 'Post',
-                        'action'        => 'create',
+                        'action'        => 'view',
                     ),
                 ),
             ),
