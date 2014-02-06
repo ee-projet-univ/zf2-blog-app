@@ -47,9 +47,9 @@
                         else {
                             ?>
                             <li class="dropdown">
-                                <a href="<?php echo $this->url('zfcuser'); ?>" class="dropdown-toggle" data-toggle="dropdown">Mon compte</a>
+                                <a href="<?php echo $this->url('zfcuser'); ?>" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $this->gravatar($this->zfcUserIdentity()->getEmail())->setImgSize(22); ?>&nbsp;&nbsp;Mon compte</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo $this->url('zfcuser'); ?>">Mon compte</a></li>
+                                    <li><a href="<?php echo $this->url('zfcuser'); ?>"> Mon compte</a></li>
                                     <li class="divider"></li>
                                     <li><a href="<?php echo $this->url('zfcuser/changepassword'); ?>">Modifier le mot de passe</a></li>
                                     <li><a href="<?php echo $this->url('zfcuser/changeemail'); ?>">Modifier l’email</a></li>
