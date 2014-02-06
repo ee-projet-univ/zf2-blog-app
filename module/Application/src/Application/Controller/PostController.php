@@ -10,7 +10,7 @@ class PostController extends AbstractActionController
     {
         //Define title
         $this->layout()->title = 'Nouveau billet';
-
+        
         //Assign form
         $this->view->form = $this->getServiceLocator()->get('PostForm');
         if(
@@ -20,5 +20,12 @@ class PostController extends AbstractActionController
                 && $this->getServiceLocator()->get('PostService')->createPost($aData)
         )$this->view->isValid = true;
         return $this->view;
+    }
+    
+    public function viewAction()
+    {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
+        //$post = $em->find("Post", (int)$id);
+        return new ViewModel();
     }
 }
