@@ -12,7 +12,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <a href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>"><?php echo $post['title']; ?></a>
-                        <span class="pull-right">par <strong>Zeldren</strong></span>
+                        <span class="pull-right">par <strong><?php echo $post['author']['username']; ?></strong></span>
                     </h3>
                 </div>
                 <div class="panel-body">
@@ -71,7 +71,7 @@
                 <?php
                 if($this->zfcUserIdentity()) {
                     ?>
-                    <p class="text-center"><b><?php echo $this->zfcUserIdentity()->getEmail(); ?></b></p>
+                    <p class="text-center"><b><?php echo $post['author']['username']; ?></b></p>
                     <p class="text-center"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail()); ?></p>
                     <p class="text-center"><a class="btn btn-success" href="">Ajouter un billet</a></p>
                     <hr />
