@@ -26,6 +26,16 @@ class Comment
     protected $author;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Application\Entity\Post")
+     * @\Doctrine\ORM\Mapping\JoinTable(name="comments_posts",
+     *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="comment_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="post_id", referencedColumnName="id")}
+     * )
+     */
+    protected $post;
+
+    /**
      * @var datetime
      * @\Doctrine\ORM\Mapping\Column(type="datetime", nullable=false)
      */
