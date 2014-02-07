@@ -71,10 +71,11 @@ return array(
             'post' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/post[/:action[/:pid]]',
+                    'route' => '/post[/:action[/:pid[/:page]]]',
                     'constraints' => array(
                         'action' => '(view|create|update|delete)',
                         'pid' => '[0-9]*',
+                        'page' => '[0-9]*'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',

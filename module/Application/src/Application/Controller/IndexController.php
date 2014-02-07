@@ -36,9 +36,9 @@ class IndexController extends AbstractActionController
                    ->setFirstResult($offset)
                    ->setMaxResults($limit);
         
-        $five_latest_post = $dql->getArrayResult();
+        $five_post = $dql->getArrayResult();
         return new ViewModel(array('page' => $page,
                                    'nb_pages' => $nb_pages,
-                                   'post' => $five_latest_post));
+                                   'post' => $five_post));
     }
 }
