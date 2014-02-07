@@ -18,14 +18,14 @@
                 <div class="panel-body">
                     <p>
                         <?php
-                        if(strlen($post['content'] > 300)) echo substr($post['content'], 0, 300).' […]';
-                        else echo $post['content'];
+                        if(strlen($post['content']) > 300) echo nl2br(substr($post['content'], 0, 300)).' […]';
+                        else echo nl2br($post['content']);
                         ?>
                     </p>
                     <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>">Lire la suite &raquo;</a></p>
                 </div>
                 <div class="panel-footer">
-                    <p class="panel-title"><span class="zf-green">Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
+                    <p class="panel-title"><span class="zf-green">Posté le <?php $date = $post['date_create']; echo $date->format('d\/m\/Y\ \à\ H\:i'); ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
                 </div>
             </div>
             <?php
