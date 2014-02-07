@@ -1,10 +1,10 @@
-<h3><?php echo $this->layout()->title; ?></h3>
+<h3><?php echo $this->title; ?></h3>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <strong>Titre du billet</strong>
-            <span class="pull-right">par <strong>Zeldren</strong></span>
+            <strong><?php echo $this->post->getTitle(); ?></strong>
+            <span class="pull-right">par <strong><?php echo $this->post->getAuthor()->getEmail(); ?></strong></span>
         </h3>
     </div>
     <div class="panel-body">

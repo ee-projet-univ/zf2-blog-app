@@ -6,6 +6,17 @@ use Zend\View\Model\ViewModel;
 
 class PostController extends AbstractActionController
 {
+    public function viewAction()
+    {
+        $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
+
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
+        $post = $em->find('Application\Entity\Post', (int)$pid);
+
+        return new ViewModel(array('title' => 'Consultation d’un billet',
+                                   'post'  => $post));
+    }
+    
     public function createAction()
     {
         //Define title
@@ -19,18 +30,6 @@ class PostController extends AbstractActionController
                 && ($aData = $this->view->form->getData())
                 && $this->getServiceLocator()->get('PostService')->createPost($aData)
         )$this->view->isValid = true;
-        return $this->view;
-    }
-    
-    public function viewAction()
-    {
-        $this->view = new ViewModel();
-
-        $this->layout()->title = 'Consultation d’un billet';
-
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
-        //$post = $em->find("Post", (int)$id);
-
         return $this->view;
     }
 }

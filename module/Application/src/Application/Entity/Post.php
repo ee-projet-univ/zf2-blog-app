@@ -56,6 +56,14 @@ class Post
     protected $content;
 
     /**
+     * Initialies the author variable.
+     */
+    public function __construct()
+    {
+        $this->author = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get the id.
      *
      * @return int
@@ -88,13 +96,12 @@ class Post
     }
 
     /**
-     * Get author name.
+     * Get author
      *
-     * @return string
+     * @return array
      */
-    public function getAuthorName()
+    public function getAuthor()
     {
-        // TODO: Return author name, not author ID (JOIN ON User)
         return $this->author;
     }
 
