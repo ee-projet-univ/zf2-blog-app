@@ -30,7 +30,9 @@ return array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
                     'host' => '127.0.0.1',
-                    'dbname' => 'zf2-blog-app'
+                    'dbname' => 'zf2-blog-app',
+                    'charset' => 'utf8',
+                    'driverOptions' => array (1002 => 'SET NAMES utf8'),
                 )
             )
         )
