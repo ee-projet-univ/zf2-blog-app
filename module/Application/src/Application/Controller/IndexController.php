@@ -28,8 +28,9 @@ class IndexController extends AbstractActionController
         $offset = ($page - 1) * 5;
         $limit = 5;
         
-        $dql = $em->createQuery('SELECT p '
+        $dql = $em->createQuery('SELECT p, u '
                                .'FROM Application\Entity\Post p '
+                               .'JOIN p.author u '
                                .'WHERE p.is_deleted = 0 '
                                .'ORDER BY p.date_create DESC ')
                    ->setFirstResult($offset)
