@@ -20,92 +20,79 @@
     <div class="panel-footer">
         <p class="panel-title">
             <span class="zf-green">Posté le <?php echo $post->getDateCreate()->format('d\/m\/Y\ \à\ H\:i'); ?></span>
-            <img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" />
+            <img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png'); ?>" alt="ZF2" />
         </p>
     </div>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Commentaires (<?php echo $nb_comment ?>)</h3>
+        <h3 class="panel-title">Commentaires (<?php echo $nb_comment; ?>)</h3>
     </div>
     <div class="panel-body">
-        
+        <table class="table table-bordered">
         <?php 
-        if ( $nb_comment == 0) { 
-        ?>
-            <table class="table table-bordered">
+        if($nb_comment == 0) { 
+            ?>
+            <tbody><tr><td>Pas de commentaire</td></tr></tbody>
+            <?php
+        }
+        else {
+            ?>
             <thead>
                 <tr>
-                    <th>Pas de commentaire</th>
+                    <th style="width: 170px">Pseudo</th>
+                    <th>Commentaire</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a class="btn btn-success" href="">Postez un commentaire</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <?php
-        }
-        else {
-        ?>
-            <table class="table table-bordered">
-                <thead>
+                <?php
+                foreach($this->comment as $comm) {
+                    ?>
                     <tr>
-                        <th>Pseudo</th>
-                        <th>Commentaire</th>
+                        <td><strong><?php echo $comm['author']['username']; ?></strong></td>
+                        <td><span class="zf-green">Posté le <?php echo $comm['date_create']->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
                     </tr>
-                </thead>
-                <tbody>
-        <?php
-            foreach($this->comment as $comment) {
-        ?>
-            <tr>
-                    <td><strong><?php echo $comment->getAuthorName; ?></strong></td>
-                    <td><span class="zf-green">Posté le <?php $date = $comment->getDateCreate(); echo $date->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
-            </tr>
-            <tr>
-                    <td><?php // echo $this->gravatar($comment['author']['email']); ?></td>
-                    <td><?php echo nl2br($comment->getContent()) ; ?></td>
-            </tr>
-        <?php
-            } //foreach
-        ?>
+                    <tr>
+                        <td><?php echo $this->gravatar($comm['author']['email'])->setImgSize(150); ?></td>
+                        <td><?php echo nl2br($comm['content']); ?></td>
+                    </tr>
+                    <?php
+                 } //foreach
+                ?>
                 </tbody>
             </table>
+            <div class="text-center">
+                <ul class="pagination">
+                    <?php
+                    // Page précédente
+                    if($this->page == 1) {
+                        echo '<li class="disabled"><a href="#">&laquo;</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="'.$this->url('post', array('action' => 'view', 'page' => ($this->page - 1))).'">&laquo;</a></li>';
+                    }
+
+                    // Liste des pages
+                    for($i = 1; $i <= $nb_pages; ++$i) {
+                        echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
+                           . '<a href="'.$this->url('post', array('action' => 'view', 'page' => $i)).'">'.$i.'</a>'
+                           . '</li>';
+                    }
+
+                    // Page suivante
+                    if($this->page == $this->nb_pages) {
+                        echo '<li class="disabled"><a href="#">&raquo;</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="'.$this->url('post', array('action' => 'view', 'page' => ($this->page + 1))).'">&raquo;</a></li>';
+                    }
+                    ?>
+                </ul>
+            </div>
         <?php
         } // else
         ?>
-
-        <div class="text-center">
-            <ul class="pagination">
-                <?php
-                // Page précédente
-                if($this->page == 1) {
-                    echo '<li class="disabled"><a href="#">&laquo;</a></li>';
-                }
-                else {
-                    echo '<li><a href="'.$this->url('post', array('page' => ($this->page - 1))).'">&laquo;</a></li>';
-                }
-
-                // Liste des pages
-                for($i = 1; $i <= $nb_pages; ++$i) {
-                    echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
-                       . '<a href="'.$this->url('post', array('page' => $i)).'">'.$i.'</a>'
-                       . '</li>';
-                }
-
-                // Page suivante
-                if($this->page == $this->nb_pages) {
-                    echo '<li class="disabled"><a href="#">&raquo;</a></li>';
-                }
-                else {
-                    echo '<li><a href="'.$this->url('post', array('page' => ($this->page + 1))).'">&raquo;</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
     </div>
     <div class="panel-footer">
         <!--TODO : formulaire d'ajout de commentaires -->

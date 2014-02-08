@@ -24,8 +24,8 @@ class PostController extends AbstractActionController
                                .'ORDER BY c.date_create DESC');
         $dql->setParameter(1, $pid);
         
-        $nb_comment = $dql->getArrayResult();
-        $nb_pages = ceil(count($nb_comment) / 10);
+        $nb_comment = count($dql->getArrayResult());
+        $nb_pages = ceil($nb_comment / 10);
 
         $page = intval($this->getEvent()->getRouteMatch()->getParam('page'));
         if($page == 0) ++$page;
@@ -37,9 +37,12 @@ class PostController extends AbstractActionController
         $dql->setFirstResult($offset)->setMaxResults($limit);
         $ten_comment = $dql->getArrayResult();
 
-        return new ViewModel(array('title'   => 'Consultation d’un billet',
-                                   'post'    => $post,
-                                   'comment' => $ten_comment));
+        return new ViewModel(array('page'       => $page,
+                                   'nb_pages'   => $nb_pages,
+                                   'nb_comment' => $nb_comment,
+                                   'title'      => 'Consultation d’un billet',
+                                   'post'       => $post,
+                                   'comment'    => $ten_comment));
     }
     
     public function createAction()
@@ -47,11 +50,11 @@ class PostController extends AbstractActionController
         $form = $this->getServiceLocator()->get('FormElementManager')->get('\Application\Form\PostForm');
         $isValid = false;
 
-        if($this->getRequest()->isPost()) {
-           $form->setData($this->params()->fromPost())->isValid();
-           $aData = $form->getData();
-           $this->getServiceLocator()->get('PostService')->createPost($aData);
-           $isValid = true;
+        if($this->getRequest()->isPost()
+        && $form->setData($this->params()->fromPost())->isValid()) {
+            $aData = $form->getData();
+            $this->getServiceLocator()->get('PostService')->createPost($aData);
+            $isValid = true;
         }
 
         return new ViewModel(array('title'   => 'Nouveau billet',
