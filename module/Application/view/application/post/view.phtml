@@ -27,45 +27,83 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Commentaires (2)</h3>
+        <h3 class="panel-title">Commentaires (<?php echo $nb_comment ?>)</h3>
     </div>
     <div class="panel-body">
-        <table class="table table-bordered">
+        
+        <?php 
+        if ( $nb_comment == 0) { 
+        ?>
+            <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th style="width: 170px">Pseudo</th>
-                    <th>Commentaire</th>
+                    <th>Pas de commentaire</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>julien.papasian</strong></td>
-                    <td>Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></td>
-                </tr>
-                <tr>
-                    <td><img src="http://www.gravatar.com/avatar/e78ffb90e799b023e93aa1ea2f568558?s=150&d=mm&r=g" alt="" /></td>
-                    <td>Commentaire1</td>
-                </tr>
-                <tr>
-                    <td><strong>m.brenguier</strong></td>
-                    <td>Posté le <?php echo date('d/m/Y') ?> à <?php echo date('H:NN') ?></td>
-                </tr>
-                <tr>
-                    <td><img src="http://www.gravatar.com/avatar/805da4864c506f7a6f0c6a236553e8ce?s=150&d=mm&r=g" alt="" /></td>
-                    <td>Commentaire2</td>
+                    <td><a class="btn btn-success" href="">Postez un commentaire</a></td>
                 </tr>
             </tbody>
         </table>
+        <?php
+        }
+        else {
+        ?>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Pseudo</th>
+                        <th>Commentaire</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <?php
+            foreach($this->comment as $comment) {
+        ?>
+            <tr>
+                    <td><strong><?php echo $comment->getAuthorName; ?></strong></td>
+                    <td><span class="zf-green">Posté le <?php $date = $comment->getDateCreate(); echo $date->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
+            </tr>
+            <tr>
+                    <td><?php // echo $this->gravatar($comment['author']['email']); ?></td>
+                    <td><?php echo nl2br($comment->getContent()) ; ?></td>
+            </tr>
+        <?php
+            } //foreach
+        ?>
+                </tbody>
+            </table>
+        <?php
+        } // else
+        ?>
 
         <div class="text-center">
             <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">…</a></li>
-                <li><a href="">9</a></li>
-                <li><a href="">10</a></li>
-                <li><a href="">&raquo;</a></li>
+                <?php
+                // Page précédente
+                if($this->page == 1) {
+                    echo '<li class="disabled"><a href="#">&laquo;</a></li>';
+                }
+                else {
+                    echo '<li><a href="'.$this->url('post', array('page' => ($this->page - 1))).'">&laquo;</a></li>';
+                }
+
+                // Liste des pages
+                for($i = 1; $i <= $nb_pages; ++$i) {
+                    echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
+                       . '<a href="'.$this->url('post', array('page' => $i)).'">'.$i.'</a>'
+                       . '</li>';
+                }
+
+                // Page suivante
+                if($this->page == $this->nb_pages) {
+                    echo '<li class="disabled"><a href="#">&raquo;</a></li>';
+                }
+                else {
+                    echo '<li><a href="'.$this->url('post', array('page' => ($this->page + 1))).'">&raquo;</a></li>';
+                }
+                ?>
             </ul>
         </div>
     </div>
