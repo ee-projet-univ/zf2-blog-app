@@ -8,21 +8,20 @@ class PostController extends AbstractActionController
 {
     public function viewAction()
     {
-        
-        //requete post
+        // Requête sur le billet
         $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
 
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default'); 
         $post = $em->find('Application\Entity\Post', (int)$pid);
         
-        //requete commentaire
+        // Requête sur les commentaires
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');  
         $dql = $em->createQuery('SELECT c, u '
-                       .'FROM Application\Entity\Comment c '
-                       .'JOIN c.author u '
-                       .'WHERE c.is_deleted = 0 '
-                       .'AND c.post = ?1 '
-                       .'ORDER BY c.date_create DESC ');
+                               .'FROM Application\Entity\Comment c '
+                               .'JOIN c.author u '
+                               .'WHERE c.is_deleted = 0 '
+                               .'AND c.post = ?1 '
+                               .'ORDER BY c.date_create DESC');
         $dql->setParameter(1, $pid);
         
         $nb_comment = $dql->getArrayResult();
@@ -35,11 +34,11 @@ class PostController extends AbstractActionController
         $offset = ($page - 1) * 10;
         $limit = 10;
         
-        $dql ->setFirstResult($offset) ->setMaxResults($limit);
+        $dql->setFirstResult($offset)->setMaxResults($limit);
         $ten_comment = $dql->getArrayResult();
 
-        return new ViewModel(array('title' => 'Consultation d’un billet',
-                                   'post'  => $post,
+        return new ViewModel(array('title'   => 'Consultation d’un billet',
+                                   'post'    => $post,
                                    'comment' => $ten_comment));
     }
     

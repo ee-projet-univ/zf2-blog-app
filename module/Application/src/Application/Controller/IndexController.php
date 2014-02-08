@@ -32,7 +32,7 @@ class IndexController extends AbstractActionController
                                .'FROM Application\Entity\Post p '
                                .'JOIN p.author u '
                                .'WHERE p.is_deleted = 0 '
-                               .'ORDER BY p.date_create DESC ')
+                               .'ORDER BY p.date_create DESC')
                    ->setFirstResult($offset)
                    ->setMaxResults($limit);
         
