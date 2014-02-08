@@ -7,8 +7,8 @@ class PostServiceFactory implements \Zend\ServiceManager\FactoryInterface {
      * @param \Zend\ServiceManager\ServiceLocatorInterface $oServiceLocator
      * @return \Application\Service\PostService
      */
-    public function createService(\Zend\ServiceManager\ServiceLocatorInterface $oServiceLocator){
+    public function createService(\Zend\ServiceManager\ServiceLocatorInterface $oServiceLocator) {
         $oService = new \Application\Service\PostService('post');
-        return $oService->createPost();
+        return $oService->createPost(array());
     }
 }

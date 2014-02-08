@@ -18,8 +18,7 @@ class PostForm extends \Zend\Form\Form {
 
         $submit = new \Zend\Form\Element\Submit('submit');
         $submit->setValue('Créer');
-        $submit->setAttributes(array('type'  => 'button',
-                                     'class' => 'btn btn-primary'));
+        $submit->setAttributes(array('class' => 'btn btn-primary'));
 
         $this->add($title)->add($content)->add($submit);
 
