@@ -44,17 +44,16 @@ class PostController extends AbstractActionController
     
     public function createAction()
     {
-        //Define title
-        $this->layout()->title = 'Nouveau billet';
-        
         //Assign form
-        $this->view->form = $this->getServiceLocator()->get('PostForm');
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('\Application\Form\PostForm');
         if(
                 $this->getRequest()->isPost()
                 && $this->view->form->setData($this->params()->fromPost())->isValid()
                 && ($aData = $this->view->form->getData())
                 && $this->getServiceLocator()->get('PostService')->createPost($aData)
         )$this->view->isValid = true;
-        return $this->view;
+
+        return new ViewModel(array('title' => 'Nouveau billet',
+                                   'form'  => $form));
     }
 }
