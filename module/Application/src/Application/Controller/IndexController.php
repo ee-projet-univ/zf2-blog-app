@@ -37,7 +37,8 @@ class IndexController extends AbstractActionController
                    ->setMaxResults($limit);
         
         $five_post = $dql->getArrayResult();
-        return new ViewModel(array('page' => $page,
+        return new ViewModel(array('title' => 'Bienvenue sur le <span class="zf-green">ZF2 Blog App</span>&nbsp;!',
+                                   'page' => $page,
                                    'nb_pages' => $nb_pages,
                                    'post' => $five_post));
     }
