@@ -15,12 +15,16 @@ class PostForm extends \Zend\Form\Form {
         $content = new \Zend\Form\Element\Textarea('content');
         $content->setLabel('Contenu')
                 ->setAttributes(array('required' => true));
+        
+        $tag = new \Zend\Form\Element\Text('tag');
+        $tag->setLabel('Tags (séparés par une espace)')
+            ->setAttributes(array('required' => true));
 
         $submit = new \Zend\Form\Element\Submit('submit');
         $submit->setValue('Créer');
         $submit->setAttributes(array('class' => 'btn btn-primary'));
 
-        $this->add($title)->add($content)->add($submit);
+        $this->add($title)->add($content)->add($tag)->add($submit);
 
         return parent::prepare();
     }
