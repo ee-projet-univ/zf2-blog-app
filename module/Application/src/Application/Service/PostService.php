@@ -1,19 +1,21 @@
 <?php
+
 namespace Application\Service;
 
-class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
+class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface
+{
+
     use \Zend\ServiceManager\ServiceLocatorAwareTrait;
 
     /**
-     * @param array $aRegisterData
-     * @throws \InvalidArgumentException
-     * @return 
+     * @param \Application\Entity\Post $oPostEntity
+     * @return \Application\Service\PostService
      */
-    public function createPost(array $aRegisterData) {
-        // TODO: Fill in database with entities here
-        $oPost = new \Application\Entity\Post();
-        $this->getServiceLocator()->get('\Application\Repository\PostRepository')->create($oPost);
+    public function createPost(\Application\Entity\Post $oPostEntity) {
+        // TODO: fill post with
+        $this->getServiceLocator()->get('\Application\Repository\PostRepository')->createPostEntity($oPostEntity);
 
         return $this;
     }
+
 }

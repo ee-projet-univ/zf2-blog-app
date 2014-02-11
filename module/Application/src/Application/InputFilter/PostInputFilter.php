@@ -1,10 +1,14 @@
 <?php
+
 namespace Application\InputFilter;
-class PostInputFilter extends \Zend\InputFilter\InputFilter {
+
+class PostInputFilter extends \Zend\InputFilter\InputFilter
+{
+
     /**
      * Constructor
      */
-    public function __construct(\Application\Repository\PostRepository $oPostRepository) {
+    public function __construct() {
         $this->add(array(
             'name' => 'title',
             'required' => true,
@@ -15,4 +19,5 @@ class PostInputFilter extends \Zend\InputFilter\InputFilter {
             'filters' => array(array('name' => 'StringTrim'))
         ));
     }
+
 }

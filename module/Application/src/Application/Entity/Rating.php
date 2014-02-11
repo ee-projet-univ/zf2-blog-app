@@ -56,7 +56,7 @@ class Rating
      */
     public function setId($sId)
     {
-        $this->id = (int)$sId;
+        $this->id = (int) $sId;
     }
 
     /**
@@ -89,7 +89,7 @@ class Rating
      */
     public function setUserId($sUserId)
     {
-        $this->user = (int)$sUserId;
+        $this->user = (int) $sUserId;
     }
 
     /**
@@ -101,7 +101,7 @@ class Rating
     {
         return $this->value;
     }
-    
+
     /**
      * Set rating value.
      *
@@ -111,6 +111,6 @@ class Rating
      */
     public function setValue($sValue)
     {
-        $this->value = (int)$sValue;
+        $this->value = (int) $sValue;
     }
 }

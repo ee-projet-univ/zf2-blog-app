@@ -50,7 +50,7 @@ class Tag
      */
     public function setId($sId)
     {
-        $this->id = (int)$sId;
+        $this->id = (int) $sId;
     }
 
     /**
@@ -83,7 +83,7 @@ class Tag
      */
     public function setPostId($sPostId)
     {
-        $this->post = (int)$sPostId;
+        $this->post = (int) $sPostId;
     }
 
     /**

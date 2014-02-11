@@ -16,9 +16,9 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');  
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $nb_posts = $em->getRepository('Application\Entity\Post')->findAll();
-        
+
         $nb_pages = ceil(count($nb_posts) / 5);
 
         $page = intval($this->getEvent()->getRouteMatch()->getParam('page'));
@@ -27,7 +27,7 @@ class IndexController extends AbstractActionController
 
         $offset = ($page - 1) * 5;
         $limit = 5;
-        
+
         $dql = $em->createQuery('SELECT p, u '
                                .'FROM Application\Entity\Post p '
                                .'JOIN p.author u '
@@ -35,8 +35,9 @@ class IndexController extends AbstractActionController
                                .'ORDER BY p.date_create DESC')
                    ->setFirstResult($offset)
                    ->setMaxResults($limit);
-        
+
         $five_post = $dql->getArrayResult();
+
         return new ViewModel(array('title' => 'Bienvenue sur le <span class="zf-green">ZF2 Blog App</span>&nbsp;!',
                                    'page' => $page,
                                    'nb_pages' => $nb_pages,

@@ -42,7 +42,7 @@ return array(
         //'module_map_cache_key' => $stringKey,
 
         // The path in which to cache merged configuration.
-       	'cache_dir' => 'data/config/cache/',
+           'cache_dir' => 'data/config/cache/',
 
         // Whether or not to enable modules dependency checking.
         // Enabled by default, prevents usage of modules that depend on other modules

@@ -46,7 +46,7 @@ class Role implements \BjyAuthorize\Acl\HierarchicalRoleInterface
      */
     public function setId($sId)
     {
-        $this->id = (int)$sId;
+        $this->id = (int) $sId;
     }
 
     /**

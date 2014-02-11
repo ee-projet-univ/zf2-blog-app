@@ -82,7 +82,7 @@ class Post
      */
     public function setId($sId)
     {
-        $this->id = (int)$sId;
+        $this->id = (int) $sId;
     }
 
     /**
@@ -114,7 +114,7 @@ class Post
      */
     public function setAuthorId($sAuthorId)
     {
-        $this->author = (int)$sAuthorId;
+        $this->author = (int) $sAuthorId;
     }
 
     /**
@@ -127,7 +127,7 @@ class Post
         // TODO: Format date with functions (date() or use an external module?)
         return $this->date_create;
     }
-    
+
     /**
      * Set date of creation.
      *
@@ -151,7 +151,7 @@ class Post
         // TODO: Format date with functions (date() or use an external module?)
         return $this->date_edit;
     }
-    
+
     /**
      * Set date of latest edit.
      *
@@ -174,7 +174,7 @@ class Post
     {
         return $this->is_deleted;
     }
-    
+
     /**
      * Delete a post or undelete it
      *
@@ -218,7 +218,7 @@ class Post
     {
         return $this->content;
     }
-    
+
     /**
      * Set content.
      *

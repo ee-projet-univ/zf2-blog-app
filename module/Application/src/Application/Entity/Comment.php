@@ -78,7 +78,7 @@ class Comment
      */
     public function setId($sId)
     {
-        $this->id = (int)$sId;
+        $this->id = (int) $sId;
     }
 
     /**
@@ -111,7 +111,7 @@ class Comment
      */
     public function setAuthorId($sAuthorId)
     {
-        $this->author = (int)$sAuthorId;
+        $this->author = (int) $sAuthorId;
     }
 
     /**
@@ -124,7 +124,7 @@ class Comment
         // TODO: Format date with functions (date() or use an external module?)
         return $this->date_create;
     }
-    
+
     /**
      * Set date of creation.
      *
@@ -148,7 +148,7 @@ class Comment
         // TODO: Format date with functions (date() or use an external module?)
         return $this->date_edit;
     }
-    
+
     /**
      * Set date of latest edit.
      *
@@ -171,7 +171,7 @@ class Comment
     {
         return $this->is_deleted;
     }
-    
+
     /**
      * Delete a comment or undelete it
      *
@@ -193,7 +193,7 @@ class Comment
     {
         return $this->content;
     }
-    
+
     /**
      * Set content.
      *

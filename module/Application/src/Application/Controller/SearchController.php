@@ -16,8 +16,7 @@ class SearchController extends AbstractActionController
 {
     public function indexAction()
     {
-        if(isset($_GET['tag']))
-        {
+        if (isset($_GET['tag'])) {
             // TODO: Récupération par méthode GET
         }
         // TODO: Récupération par méthode POST
