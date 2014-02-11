@@ -71,7 +71,7 @@
                 <?php
                 if($this->zfcUserIdentity()) {
                     ?>
-                    <p class="text-center"><b><?php echo $post['author']['username']; ?></b></p>
+                    <p class="text-center"><b><?php echo $this->zfcUserIdentity()->getEmail(); ?></b></p>
                     <p class="text-center"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail()); ?></p>
                     <p class="text-center"><a class="btn btn-success" href="">Ajouter un billet</a></p>
                     <hr />
