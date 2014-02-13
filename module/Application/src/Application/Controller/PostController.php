@@ -22,7 +22,7 @@ class PostController extends AbstractActionController
                 . 'JOIN c.author u '
                 . 'WHERE c.is_deleted = 0 '
                 . 'AND c.post = ?1 '
-                . 'ORDER BY c.date_create DESC');
+                . 'ORDER BY c.date_create ASC');
         $dql->setParameter(1, $pid);
 
         $nb_comment = count($dql->getArrayResult());
