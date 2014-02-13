@@ -39,8 +39,8 @@
         else {
             ?>
             <thead>
-                <tr>
-                    <th style="width: 170px">Pseudo</th>
+                <tr style="background-color: #68b604 ; color: white">
+                    <th style="width: 120px">Pseudo</th>
                     <th>Commentaire</th>
                 </tr>
             </thead>
@@ -49,12 +49,13 @@
                 foreach($this->comment as $comm) {
                     ?>
                     <tr>
-                        <td><strong><?php echo $comm['author']['username']; ?></strong></td>
-                        <td><span class="zf-green">Posté le <?php echo $comm['date_create']->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
+                        <td class="text-center"><?php echo $this->gravatar($comm['author']['email'])->setImgSize(100); ?></td>
+                        <td><?php echo nl2br($comm['content']); ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo $this->gravatar($comm['author']['email'])->setImgSize(150); ?></td>
-                        <td><?php echo nl2br($comm['content']); ?></td>
+                        <td class="text-center" style="border-top:#FFFFFF;"><strong><?php echo $comm['author']['username']; ?></strong></td>
+                        <td><span class="zf-green">Posté le <?php echo $comm['date_create']->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
+                    
                     </tr>
                     <?php
                  } //foreach
