@@ -1,12 +1,13 @@
 <?php
+
 namespace Application\Entity;
 
 /**
- * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="\Application\Repository\PostRepository")
  * @\Doctrine\ORM\Mapping\Table(name="post")
  */
-class Post
-{
+class Post {
+
     /**
      * @var int
      * @\Doctrine\ORM\Mapping\Id
@@ -58,8 +59,7 @@ class Post
     /**
      * Initialies the author variable.
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->author = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -68,8 +68,7 @@ class Post
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -80,8 +79,7 @@ class Post
      *
      * @return void
      */
-    public function setId($sId)
-    {
+    public function setId($sId) {
         $this->id = (int) $sId;
     }
 
@@ -90,8 +88,7 @@ class Post
      *
      * @return int
      */
-    public function getAuthorId()
-    {
+    public function getAuthorId() {
         return $this->author;
     }
 
@@ -100,8 +97,7 @@ class Post
      *
      * @return array
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -112,8 +108,7 @@ class Post
      *
      * @return void
      */
-    public function setAuthorId($sAuthorId)
-    {
+    public function setAuthorId($sAuthorId) {
         $this->author = (int) $sAuthorId;
     }
 
@@ -122,8 +117,7 @@ class Post
      *
      * @return datetime
      */
-    public function getDateCreate()
-    {
+    public function getDateCreate() {
         // TODO: Format date with functions (date() or use an external module?)
         return $this->date_create;
     }
@@ -135,8 +129,7 @@ class Post
      *
      * @return void
      */
-    public function setDateCreate($dDateCreate)
-    {
+    public function setDateCreate($dDateCreate) {
         // TODO: Is $dDateCreate a timestamp or a date to format?
         $this->date_create = $dDateCreate;
     }
@@ -146,8 +139,7 @@ class Post
      *
      * @return datetime
      */
-    public function getDateEdit()
-    {
+    public function getDateEdit() {
         // TODO: Format date with functions (date() or use an external module?)
         return $this->date_edit;
     }
@@ -159,8 +151,7 @@ class Post
      *
      * @return void
      */
-    public function setDateEdit($dDateEdit)
-    {
+    public function setDateEdit($dDateEdit) {
         // TODO: Is $dDateEdit a timestamp or a date to format?
         $this->date_edit = $dDateEdit;
     }
@@ -170,8 +161,7 @@ class Post
      *
      * @return boolean
      */
-    public function isDeleted()
-    {
+    public function isDeleted() {
         return $this->is_deleted;
     }
 
@@ -182,8 +172,7 @@ class Post
      *
      * @return void
      */
-    public function setDeleted($bDeleted)
-    {
+    public function setDeleted($bDeleted) {
         $this->is_deleted = $bDeleted;
     }
 
@@ -192,8 +181,7 @@ class Post
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -204,8 +192,7 @@ class Post
      *
      * @return void
      */
-    public function setTitle($sTitle)
-    {
+    public function setTitle($sTitle) {
         $this->title = $sTitle;
     }
 
@@ -214,8 +201,7 @@ class Post
      *
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -226,8 +212,8 @@ class Post
      *
      * @return void
      */
-    public function setContent($sContent)
-    {
+    public function setContent($sContent) {
         $this->content = $sContent;
     }
+
 }

@@ -2,8 +2,7 @@
 
 namespace Application\Service;
 
-class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface
-{
+class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
 
     use \Zend\ServiceManager\ServiceLocatorAwareTrait;
 
@@ -13,7 +12,7 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface
      */
     public function createPost(\Application\Entity\Post $oPostEntity) {
         // TODO: fill post with
-        $this->getServiceLocator()->get('\Application\Repository\PostRepository')->createPostEntity($oPostEntity);
+        $this->getServiceLocator()->get('PostRepository')->createPostEntity($oPostEntity);
 
         return $this;
     }
