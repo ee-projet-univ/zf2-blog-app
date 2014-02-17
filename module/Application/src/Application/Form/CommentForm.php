@@ -13,11 +13,11 @@ class CommentForm extends \Zend\Form\Form
             return $this;
 
         $content = new \Zend\Form\Element\Textarea('content');
-        $content->setLabel('Contenu')
+        $content->setLabel('Contenu de votre commentaire :')
                 ->setAttributes(array('required' => true));
 
         $submit = new \Zend\Form\Element\Submit('submit');
-        $submit->setValue('Créer');
+        $submit->setValue('Publier');
         $submit->setAttributes(array('class' => 'btn btn-primary'));
 
         $this->add($content)->add($submit);

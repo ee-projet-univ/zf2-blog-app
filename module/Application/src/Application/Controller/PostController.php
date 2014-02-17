@@ -81,5 +81,14 @@ class PostController extends AbstractActionController
 
         return $oView;
     }
+    
+    public function deleteAction() {
+        //Initialize view model
+        $oView = new ViewModel(array(
+            'title' => 'Suppression billet',
+        ));
+
+        return $oView;
+    }
 
 }
