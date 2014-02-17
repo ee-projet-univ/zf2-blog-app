@@ -11,7 +11,22 @@
         if($post->getDateCreate() != $post->getDateEdit()) {
             ?>
             <p><em>Dernière modification le <?php echo $post->getDateEdit()->format('d\/m\/Y\ \à\ H\:i'); ?></em></p>
+                <?php
+                if ($post->getAuthorId()->getUsername() == $this->zfcUserDisplayName()) {
+                ?>
+                    <p>
+                        <span class="pull-left">
+                            <a><span class="glyphicon glyphicon-star"></span></a>
+                            <a><span class="glyphicon glyphicon-star"></span></a>
+                            <a><span class="glyphicon glyphicon-star"></span></a>
+                            <a><span class="glyphicon glyphicon-star"></span></a>
+                            <a><span class="glyphicon glyphicon-star"></span></a>
+                        </span>
+                        <a class="btn glyphicon glyphicon-remove pull-right" href="#" title="Supprimer"></a>
+                        <a class="btn glyphicon glyphicon-pencil pull-right" href="#" title="Éditer"></a>
+                    </p>
             <?php
+                }
         }
         ?>
     </div>
@@ -95,6 +110,6 @@
         ?>
     </div>
     <div class="panel-footer">
-        <!--TODO : formulaire d'ajout de commentaires -->
+        <p class="text-center"><a class="btn btn-warning" href="<?php echo $this->url('comment', array('action' => 'create')); ?>">Poster un commentaire</a></p>
     </div>
 </div>

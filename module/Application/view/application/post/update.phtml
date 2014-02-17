@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $title; ?></h3>
+    </div>
+    <div class="panel-body" style="padding: 0 30px">
+        <?php
+        if($this->isValid === true) echo 'Formulaire envoyé';
+        else {
+            if(!empty($this->error)) echo $this->alert($this->error, 'alert-error', false);
+            echo $this->form($this->form);
+        }
+        ?>
+    </div>
+</div>
