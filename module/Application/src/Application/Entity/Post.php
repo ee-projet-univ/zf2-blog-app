@@ -57,13 +57,6 @@ class Post {
     protected $content;
 
     /**
-     * Initialies the author variable.
-     */
-    public function __construct() {
-        $this->author = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get the id.
      *
      * @return int
@@ -89,15 +82,6 @@ class Post {
      * @return int
      */
     public function getAuthorId() {
-        return $this->author;
-    }
-
-    /**
-     * Get author
-     *
-     * @return array
-     */
-    public function getAuthor() {
         return $this->author;
     }
 
@@ -130,7 +114,6 @@ class Post {
      * @return void
      */
     public function setDateCreate($dDateCreate) {
-        // TODO: Is $dDateCreate a timestamp or a date to format?
         $this->date_create = $dDateCreate;
     }
 
@@ -140,7 +123,6 @@ class Post {
      * @return datetime
      */
     public function getDateEdit() {
-        // TODO: Format date with functions (date() or use an external module?)
         return $this->date_edit;
     }
 
@@ -152,7 +134,6 @@ class Post {
      * @return void
      */
     public function setDateEdit($dDateEdit) {
-        // TODO: Is $dDateEdit a timestamp or a date to format?
         $this->date_edit = $dDateEdit;
     }
 
