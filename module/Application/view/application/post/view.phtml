@@ -85,13 +85,13 @@
                         echo '<li class="disabled"><a href="#">&laquo;</a></li>';
                     }
                     else {
-                        echo '<li><a href="'.$this->url('post', array('action' => 'view', 'page' => ($this->page - 1))).'">&laquo;</a></li>';
+                        echo '<li><a href="'.$this->url('post-view', array('page' => ($this->page - 1))).'">&laquo;</a></li>';
                     }
 
                     // Liste des pages
                     for($i = 1; $i <= $nb_pages; ++$i) {
                         echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
-                           . '<a href="'.$this->url('post', array('action' => 'view', 'page' => $i)).'">'.$i.'</a>'
+                           . '<a href="'.$this->url('post-view', array('page' => $i)).'">'.$i.'</a>'
                            . '</li>';
                     }
 
@@ -100,7 +100,7 @@
                         echo '<li class="disabled"><a href="#">&raquo;</a></li>';
                     }
                     else {
-                        echo '<li><a href="'.$this->url('post', array('action' => 'view', 'page' => ($this->page + 1))).'">&raquo;</a></li>';
+                        echo '<li><a href="'.$this->url('post-view', array('page' => ($this->page + 1))).'">&raquo;</a></li>';
                     }
                     ?>
                 </ul>
