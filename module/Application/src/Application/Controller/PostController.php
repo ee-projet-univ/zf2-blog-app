@@ -70,5 +70,16 @@ class PostController extends AbstractActionController
 
         return $oView;
     }
+    
+    public function updateAction() {
+        //Initialize view model
+        $oView = new ViewModel(array(
+            'title' => 'Édition billet',
+            'form' => $this->getServiceLocator()->get('PostForm')->bind($oPostEntity = new \Application\Entity\Post()),
+            'isValid' => false
+        ));
+
+        return $oView;
+    }
 
 }

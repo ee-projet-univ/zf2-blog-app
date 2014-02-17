@@ -12,9 +12,6 @@ class CommForm extends \Zend\Form\Form
         if ($this->isPrepared)
             return $this;
 
-        $title = new \Zend\Form\Element\Text('title');
-        $title->setLabel('Postez un commentaire');
-
         $content = new \Zend\Form\Element\Textarea('content');
         $content->setLabel('Contenu')
                 ->setAttributes(array('required' => true));
@@ -23,7 +20,7 @@ class CommForm extends \Zend\Form\Form
         $submit->setValue('Créer');
         $submit->setAttributes(array('class' => 'btn btn-primary'));
 
-        $this->add($title)->add($content)->add($submit);
+        $this->add($content)->add($submit);
 
         return parent::prepare();
     }

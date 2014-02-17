@@ -98,6 +98,21 @@ return array(
                     ),
                 ),
             ),
+            'comment' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/comm[/:action[/:cid]]',
+                    'constraints' => array(
+                        'action' => '(create|update|delete)',
+                        'cid' => '[0-9]*'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Comment',
+                        'action' => 'create',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -133,6 +148,7 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Search' => 'Application\Controller\SearchController',
             'Application\Controller\Post' => 'Application\Controller\PostController',
+            'Application\Controller\Comment' => 'Application\Controller\CommentController',
         ),
     ),
     'view_manager' => array(
@@ -145,7 +161,10 @@ return array(
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'app/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'app/search/index' => __DIR__ . '/../view/application/search/index.phtml',
+            'post/view' => __DIR__ . '/../view/application/post/view.phtml',
             'post/create' => __DIR__ . '/../view/application/post/create.phtml',
+            'post/update' => __DIR__ . '/../view/application/post/update.phtml',
+            'comm/create' => __DIR__ . '/../view/application/comm/create.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -207,6 +226,11 @@ return array(
                 ),
                 array(
                     'controller' => 'Application\Controller\Post',
+                    'action' => array('create', 'update'),
+                    'roles' =>  'user'
+                ),
+                array(
+                    'controller' => 'Application\Controller\Comment',
                     'action' => 'create',
                     'roles' =>  'user'
                 ),
@@ -227,6 +251,7 @@ return array(
                 array('route' => 'search', 'roles' => array('guest', 'user')),
                 array('route' => 'post-view', 'roles' => array('guest', 'user')),
                 array('route' => 'post-crud', 'roles' => array('user')),
+                array('route' => 'comment', 'roles' => array('user')),
             ),
         ),
     ),
