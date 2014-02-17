@@ -1,13 +1,25 @@
 body {
     padding-top: 60px;
     padding-bottom: 40px;
-    background-image:url("../img/shattered.png");
+    background-image:url("../img/knitting.png");
     background-repeat:repeat;
 }
 
 .zf-green {
     color: #68b604;
 }
+
+.panel, .pagination {
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+hr { 
+    padding: 0; 
+    border: none; 
+    border-top: medium double #808080; 
+    color: #808080; 
+    text-align: center; 
+} 
 
 .btn-success {
   background-color: #57a900;
