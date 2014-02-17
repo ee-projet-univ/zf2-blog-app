@@ -10,7 +10,7 @@
         ?>
 
         <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico')) ?>
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon2.ico')) ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -87,7 +87,7 @@
                             <h3>Recherche</h3>
                             <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
                                 <div class="form-group">
-                                    <input id="tag" size="37" class="form-control" name="tag" type="text" placeholder="Recherche…" />
+                                    <input id="tag" size="20" class="form-control" name="tag" type="text" placeholder="Recherche…" />
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="OK" class="btn btn-default" />
@@ -125,7 +125,23 @@
             </div>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <span class="text-center" style="font-family: Verdana">
+                                    <div class="alert alert-success" style="margin : 0px;">
+                                    Projet d'année Licence 3 Informatique IUP MIAGE par PAPASIAN Julien, CANOVAS Raphaël et BRENGUIER Maxime
+                                    <br/>
+                                    Encadrés par ESCALLE Émilien et COLON Etienne
+                                    <br/>
+                                    <strong>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></strong>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
