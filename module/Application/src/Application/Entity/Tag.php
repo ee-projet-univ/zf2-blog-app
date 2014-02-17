@@ -17,7 +17,7 @@ class Tag
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @\Doctrine\ORM\Mapping\OneToOne(targetEntity="Application\Entity\User")
+     * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Application\Entity\Post")
      * @\Doctrine\ORM\Mapping\JoinTable(name="tags_posts",
      *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="tag_id", referencedColumnName="id")},
      *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="post_id", referencedColumnName="id")}
