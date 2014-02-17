@@ -68,12 +68,11 @@ return array(
                     ),
                 ),
             ),
-            'post' => array(
+            'post-view' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/post[/:action[/:pid[/:page]]]',
+                    'route' => '/post/view[/:pid[/:page]]',
                     'constraints' => array(
-                        'action' => '(view|create|update|delete)',
                         'pid' => '[0-9]*',
                         'page' => '[0-9]*'
                     ),
@@ -81,6 +80,21 @@ return array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller' => 'Post',
                         'action' => 'view',
+                    ),
+                ),
+            ),
+            'post-crud' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/post[/:action[/:pid]]',
+                    'constraints' => array(
+                        'action' => '(create|update|delete)',
+                        'pid' => '[0-9]*'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Post',
+                        'action' => 'create',
                     ),
                 ),
             ),
@@ -166,14 +180,53 @@ return array(
         // telling ZfcUserDoctrineORM to skip the entities it defines
         'enable_default_entities' => false,
     ),
+    
     'bjyauthorize' => array(
         // Using the authentication identity provider, which basically reads the roles from the auth service's identity
         'identity_provider' => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
         'role_providers' => array(
+
             // using an object repository (entity repository) to load all roles into our ACL
             'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
                 'object_manager' => 'doctrine.entitymanager.orm_default',
                 'role_entity_class' => 'Application\Entity\Role',
+            ),   
+        ),
+    
+        'guards' => array(
+            'BjyAuthorize\Guard\Controller' => array(
+                array(
+                    'controller' => 'Application\Controller\Index',
+                    'action' => 'index',
+                    'roles' => array('guest', 'user')
+                ),
+                array(
+                    'controller' => 'Application\Controller\Post',
+                    'action' => 'view',
+                    'roles' => array('guest', 'user')
+                ),
+                array(
+                    'controller' => 'Application\Controller\Post',
+                    'action' => 'create',
+                    'roles' =>  'user'
+                ),
+                array(
+                    'controller' => 'Application\Controller\Search',
+                    'action' => 'index',
+                    'roles' =>  array('guest', 'user')
+                ),
+                array('controller' => 'zfcuser', 'roles' => array()),
+            ),
+
+            'BjyAuthorize\Guard\Route' => array(
+                array('route' => 'zfcuser', 'roles' => array('user')),
+                array('route' => 'zfcuser/logout', 'roles' => array('user')),
+                array('route' => 'zfcuser/login', 'roles' => array('guest')),
+                array('route' => 'zfcuser/register', 'roles' => array('guest')),
+                array('route' => 'home', 'roles' => array('guest', 'user')),
+                array('route' => 'search', 'roles' => array('guest', 'user')),
+                array('route' => 'post-view', 'roles' => array('guest', 'user')),
+                array('route' => 'post-crud', 'roles' => array('user')),
             ),
         ),
     ),

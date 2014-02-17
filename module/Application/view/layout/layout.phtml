@@ -78,7 +78,7 @@
                                 ?>
                                 <p class="text-center"><b><?php echo $this->zfcUserDisplayName(); ?></b></p>
                                 <p class="text-center"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail())->setImgSize(124); ?></p>
-                                <p class="text-center"><a class="btn btn-success" href="<?php echo $this->url('post', array('action' => 'create')); ?>">Ajouter un billet</a></p>
+                                <p class="text-center"><a class="btn btn-success" href="<?php echo $this->url('post-crud', array('action' => 'create')); ?>">Ajouter un billet</a></p>
                                 <hr />
                                 <?php
                             }

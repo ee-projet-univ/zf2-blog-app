@@ -5,7 +5,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <a href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>"><?php echo $post['title']; ?></a>
+                        <a href="<?php echo $this->url('post-view', array('pid' => $post['id'])); ?>"><?php echo $post['title']; ?></a>
                         <span class="pull-right">par <strong><?php echo $post['author']['username']; ?></strong></span>
                     </h3>
                 </div>
@@ -16,7 +16,7 @@
                         else echo nl2br($post['content']);
                         ?>
                     </p>
-                    <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post', array('action' => 'view', 'pid' => $post['id'])); ?>">Lire la suite &raquo;</a></p>
+                    <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post-view', array('pid' => $post['id'])); ?>">Lire la suite &raquo;</a></p>
                 </div>
                 <div class="panel-footer">
                     <p class="panel-title"><span class="zf-green">Posté le <?php $date = $post['date_create']; echo $date->format('d\/m\/Y\ \à\ H\:i'); ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
