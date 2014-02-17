@@ -2,7 +2,7 @@
 
 namespace Application\Form;
 
-class CommForm extends \Zend\Form\Form
+class CommentForm extends \Zend\Form\Form
 {
 
     /**

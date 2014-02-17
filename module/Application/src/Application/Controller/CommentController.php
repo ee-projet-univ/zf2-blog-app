@@ -12,7 +12,7 @@ class CommentController extends AbstractActionController
         //Initialize view model
         $oView = new ViewModel(array(
             'title' => 'Nouveau commentaire',
-            'form' => $this->getServiceLocator()->get('CommForm')->bind($oCommentEntity = new \Application\Entity\Comment()),
+            'form' => $this->getServiceLocator()->get('CommentForm')->bind($oCommentEntity = new \Application\Entity\Comment()),
             'isValid' => false
         ));
         

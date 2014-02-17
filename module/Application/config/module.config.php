@@ -127,6 +127,7 @@ return array(
         'factories' => array(
             // Form
             'PostForm' => 'Application\Factory\Form\PostFormFactory',
+            'CommentForm' => 'Application\Factory\Form\CommentFormFactory',
             // Services
             'PostService' => 'Application\Factory\PostServiceFactory',
             //Repository
