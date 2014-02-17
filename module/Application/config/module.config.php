@@ -165,6 +165,7 @@ return array(
             'post/view' => __DIR__ . '/../view/application/post/view.phtml',
             'post/create' => __DIR__ . '/../view/application/post/create.phtml',
             'post/update' => __DIR__ . '/../view/application/post/update.phtml',
+            'post/delete' => __DIR__ . '/../view/application/post/delete.phtml',
             'comm/create' => __DIR__ . '/../view/application/comm/create.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
@@ -227,7 +228,7 @@ return array(
                 ),
                 array(
                     'controller' => 'Application\Controller\Post',
-                    'action' => array('create', 'update'),
+                    'action' => array('create', 'update', 'delete'),
                     'roles' =>  'user'
                 ),
                 array(
