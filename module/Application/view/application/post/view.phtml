@@ -68,7 +68,7 @@
                     <tr>
                         <td class="text-center"><?php echo $this->gravatar($comm['author']['email'])->setImgSize(100); ?></td>
                         <td><?php echo nl2br($comm['content']);
-                            if ($comm['author'] == $this->zfcUserDisplayName()) {
+                            if ($comm['author']['username'] == $this->zfcUserDisplayName()) {
                             ?>
                             <p>
                                 <?php 
