@@ -167,6 +167,8 @@ return array(
             'post/update' => __DIR__ . '/../view/application/post/update.phtml',
             'post/delete' => __DIR__ . '/../view/application/post/delete.phtml',
             'comm/create' => __DIR__ . '/../view/application/comm/create.phtml',
+            'comm/update' => __DIR__ . '/../view/application/comm/update.phtml',
+            'comm/delete' => __DIR__ . '/../view/application/comm/delete.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -233,7 +235,7 @@ return array(
                 ),
                 array(
                     'controller' => 'Application\Controller\Comment',
-                    'action' => 'create',
+                    'action' => array('create', 'update', 'delete'),
                     'roles' =>  'user'
                 ),
                 array(

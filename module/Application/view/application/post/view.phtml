@@ -23,7 +23,7 @@
                             <a><span class="glyphicon glyphicon-star"></span></a>
                         </span>
                         <?php 
-                        echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Éditer" href="'.$this->url('post-crud', array('action' => 'delete','pid' => $post->getId())).'"></a>';
+                        echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('post-crud', array('action' => 'delete','pid' => $post->getId())).'"></a>';
                         echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('post-crud', array('action' => 'update','pid' => $post->getId())).'"></a>'
                         ?>
                     </p>
@@ -67,7 +67,18 @@
                     ?>
                     <tr>
                         <td class="text-center"><?php echo $this->gravatar($comm['author']['email'])->setImgSize(100); ?></td>
-                        <td><?php echo nl2br($comm['content']); ?></td>
+                        <td><?php echo nl2br($comm['content']);
+                            if ($comm['author'] == $this->zfcUserDisplayName()) {
+                            ?>
+                            <p>
+                                <?php 
+                                echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('comment', array('action' => 'delete','cid' => $comm['id'])).'"></a>';
+                                echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('comment', array('action' => 'update','cid' => $comm['id'])).'"></a>'
+                                ?>
+                            </p>
+                            <?php }
+                            ?>
+                        </td>
                     </tr>
                     <tr>
                         <td class="text-center" style="border-top:#FFFFFF;"><strong><?php echo $comm['author']['username']; ?></strong></td>
