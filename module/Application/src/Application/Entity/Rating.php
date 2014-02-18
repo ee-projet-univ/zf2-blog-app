@@ -17,7 +17,7 @@ class Rating
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     * @\Doctrine\ORM\Mapping\OneToOne(targetEntity="Application\Entity\User")
+     * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Application\Entity\User")
      * @\Doctrine\ORM\Mapping\JoinTable(name="ratings_users",
      *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="rating_id", referencedColumnName="id")},
      *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="user_id", referencedColumnName="id")}
@@ -25,6 +25,16 @@ class Rating
      */
     protected $user;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Application\Entity\Post")
+     * @\Doctrine\ORM\Mapping\JoinTable(name="ratings_posts",
+     *      joinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="rating_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@\Doctrine\ORM\Mapping\JoinColumn(name="post_id", referencedColumnName="id")}
+     * )
+     */
+    protected $post;
+    
     /**
      * @var datetime
      * @\Doctrine\ORM\Mapping\Column(type="datetime", nullable=false)
@@ -36,7 +46,7 @@ class Rating
      * @\Doctrine\ORM\Mapping\Column(type="smallint", nullable=true)
      */
     protected $value;
-
+    
     /**
      * Get the id.
      *
@@ -70,17 +80,6 @@ class Rating
     }
 
     /**
-     * Get user name.
-     *
-     * @return string
-     */
-    public function getUserName()
-    {
-        // TODO: Return user name, not user ID (JOIN ON User)
-        return $this->user;
-    }
-
-    /**
      * Set user id.
      *
      * @param int $sUserId
@@ -92,6 +91,28 @@ class Rating
         $this->user = (int) $sUserId;
     }
 
+    /**
+     * Get post id.
+     *
+     * @return int
+     */
+    public function getPostId()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Set post id.
+     *
+     * @param int $sPostId
+     *
+     * @return void
+     */
+    public function setPostId($sPostId)
+    {
+        $this->post = (int) $sPostId;
+    }
+    
     /**
      * Get rating value.
      *
