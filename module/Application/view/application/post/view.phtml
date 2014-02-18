@@ -49,7 +49,7 @@
         <?php 
         if($nb_comment == 0) { 
             ?>
-                <tbody><tr><td>Pas de commentaire</td></tr></tbody>
+                <tbody><tr><td>Pas de commentaires</td></tr></tbody>
             </table>
             <?php
         }
@@ -72,8 +72,8 @@
                             ?>
                             <p>
                                 <?php 
-                                echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('comment', array('action' => 'delete','cid' => $comm['id'])).'"></a>';
-                                echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('comment', array('action' => 'update','cid' => $comm['id'])).'"></a>'
+                                echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('comm-ud', array('action' => 'delete','cid' => $comm['id'])).'"></a>';
+                                echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('comm-ud', array('action' => 'update','cid' => $comm['id'])).'"></a>'
                                 ?>
                             </p>
                             <?php }
@@ -127,6 +127,6 @@
         ?>
     </div>
     <div class="panel-footer">
-        <p class="text-center" style="margin: 0px;"><a class="btn btn-success" style="margin: 0px;" href="<?php echo $this->url('comment', array('action' => 'create')); ?>">Poster un commentaire</a></p>
+        <p class="text-center" style="margin: 0px;"><a class="btn btn-success" style="margin: 0px;" href="<?php echo $this->url('comm-create', array('pid' => $post->getId())); ?>">Poster un commentaire</a></p>
     </div>
 </div>

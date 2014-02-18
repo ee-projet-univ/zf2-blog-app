@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -7,7 +6,6 @@ use Zend\View\Model\ViewModel;
 
 class PostController extends AbstractActionController
 {
-
     public function viewAction() {
         // Requête sur le billet
         $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
@@ -16,7 +14,6 @@ class PostController extends AbstractActionController
         $post = $em->find('Application\Entity\Post', (int) $pid);
 
         // Requête sur les commentaires
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $dql = $em->createQuery('SELECT c, u '
                 . 'FROM Application\Entity\Comment c '
                 . 'JOIN c.author u '
@@ -53,7 +50,7 @@ class PostController extends AbstractActionController
      * @return \Zend\View\Model\ViewModel
      */
     public function createAction() {
-        //Initialize view model
+        // Initialize view model
         $oView = new ViewModel(array(
             'title' => 'Nouveau billet',
             'form' => $this->getServiceLocator()->get('PostForm')->bind($oPostEntity = new \Application\Entity\Post()),
@@ -70,20 +67,41 @@ class PostController extends AbstractActionController
 
         return $oView;
     }
-    
-    public function updateAction() {
-        //Initialize view model
-        $oView = new ViewModel(array(
-            'title' => 'Édition billet',
-            'form' => $this->getServiceLocator()->get('PostForm')->bind($oPostEntity = new \Application\Entity\Post()),
-            'isValid' => false
-        ));
 
-        return $oView;
+    /**
+     * Process update form action
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function updateAction() {
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
+        $post = $em->find('Application\Entity\Post', (int) $pid);
+
+        if($post == null) {
+            $this->getResponse()->setStatusCode(404);
+            return;
+        }
+        else {
+            // Initialize view model
+            $oView = new ViewModel(array(
+                'title' => 'Édition billet',
+                'form' => $this->getServiceLocator()->get('PostForm')->bind($post),
+                'isValid' => false
+            ));
+
+            return $oView;
+        }
     }
     
     public function deleteAction() {
-        //Initialize view model
+        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+
+        $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
+        $post = $em->find('Application\Entity\Post', (int) $pid);
+
+        if($post == null) $this->getResponse()->setStatusCode(404);
+
         $oView = new ViewModel(array(
             'title' => 'Suppression billet',
         ));

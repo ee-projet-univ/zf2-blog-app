@@ -86,10 +86,11 @@ return array(
             'post-crud' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/post[/:action[/:pid]]',
+                    'route' => '/post[/:action[/:pid[/:sur]]]',
                     'constraints' => array(
                         'action' => '(create|update|delete)',
-                        'pid' => '[0-9]*'
+                        'pid' => '[0-9]*',
+                        'sur' => '(0|1)'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
@@ -98,18 +99,33 @@ return array(
                     ),
                 ),
             ),
-            'comment' => array(
+            'comm-create' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/comm[/:action[/:cid]]',
+                    'route' => '/comm/create[/:pid]',
                     'constraints' => array(
-                        'action' => '(create|update|delete)',
-                        'cid' => '[0-9]*'
+                        'pid' => '[0-9]*'
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller' => 'Comment',
                         'action' => 'create',
+                    ),
+                ),
+            ),
+            'comm-ud' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/comm[/:action[/:cid[/:sur]]]',
+                    'constraints' => array(
+                        'action' => '(update|delete)',
+                        'cid' => '[0-9]*',
+                        'sur' => '(0|1)'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Comment',
+                        'action' => 'update',
                     ),
                 ),
             ),
@@ -255,7 +271,8 @@ return array(
                 array('route' => 'search', 'roles' => array('guest', 'user')),
                 array('route' => 'post-view', 'roles' => array('guest', 'user')),
                 array('route' => 'post-crud', 'roles' => array('user')),
-                array('route' => 'comment', 'roles' => array('user')),
+                array('route' => 'comm-create', 'roles' => array('user')),
+                array('route' => 'comm-ud', 'roles' => array('user')),
             ),
         ),
     ),
