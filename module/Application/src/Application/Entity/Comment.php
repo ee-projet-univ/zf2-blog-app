@@ -92,17 +92,6 @@ class Comment
     }
 
     /**
-     * Get author name.
-     *
-     * @return string
-     */
-    public function getAuthorName()
-    {
-        // TODO: Return author name, not author ID (JOIN ON User)
-        return $this->author;
-    }
-
-    /**
      * Set author id.
      *
      * @param int $sAuthorId
@@ -121,7 +110,6 @@ class Comment
      */
     public function getDateCreate()
     {
-        // TODO: Format date with functions (date() or use an external module?)
         return $this->date_create;
     }
 
@@ -134,7 +122,6 @@ class Comment
      */
     public function setDateCreate($dDateCreate)
     {
-        // TODO: Is $dDateCreate a timestamp or a date to format?
         $this->date_create = $dDateCreate;
     }
 
@@ -145,7 +132,6 @@ class Comment
      */
     public function getDateEdit()
     {
-        // TODO: Format date with functions (date() or use an external module?)
         return $this->date_edit;
     }
 
@@ -158,7 +144,6 @@ class Comment
      */
     public function setDateEdit($dDateEdit)
     {
-        // TODO: Is $dDateEdit a timestamp or a date to format?
         $this->date_edit = $dDateEdit;
     }
 
