@@ -82,25 +82,43 @@ class Comment
     }
 
     /**
-     * Get author id.
+     * Get author.
      *
-     * @return int
+     * @return \Application\Entity\User
      */
-    public function getAuthorId()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
     /**
-     * Set author id.
+     * Set author.
      *
-     * @param int $sAuthorId
+     * @param \Application\Entity\User $sAuthor
      *
      * @return void
      */
-    public function setAuthorId($sAuthorId)
-    {
-        $this->author = (int) $sAuthorId;
+    public function setAuthor($sAuthor) {
+        $this->author = $sAuthor;
+    }
+    
+    /**
+     * Get post.
+     *
+     * @return \Application\Entity\Post
+     */
+    public function getPost() {
+        return $this->post;
+    }
+
+    /**
+     * Set post.
+     *
+     * @param \Application\Entity\Post $sPost
+     *
+     * @return void
+     */
+    public function setPost($sPost) {
+        $this->post = $sPost;
     }
 
     /**

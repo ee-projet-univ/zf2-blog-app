@@ -47,19 +47,33 @@ class CommentController extends AbstractActionController
     }
     
     public function deleteAction() {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
         $cid = intval($this->getEvent()->getRouteMatch()->getParam('cid'));
-        $comm = $em->find('Application\Entity\Comment', (int) $cid);
+        $sur = intval($this->getEvent()->getRouteMatch()->getParam('sur'));
+        $comm = $this->getServiceLocator()->get('CommentService')->getCommentEntityByCommentId((int) $cid);
+        $userme = $this->getServiceLocator()->get('UserService')->getCurrentUserEntity();
 
-        if($comm == null) $this->getResponse()->setStatusCode(404);
+        if($comm == null || $comm->isDeleted()
+        || ($comm->getAuthor()->getId() != $userme->getId() && $userme->getRoles()[0]->getRoleId() != "administrator"))
+        {
+            $this->getResponse()->setStatusCode(404);
+            return;
+        }
+        else {
+            // Initialize view model
+            $oView = new ViewModel(array(
+                'title' => 'Suppression d’un commentaire',
+                'cid' => $cid,
+                'comm' => $comm,
+                'isValid' => false
+            ));
+            
+            if($sur && $this->getServiceLocator()->get('CommentService')->deleteComment($comm))
+            {
+                $oView->isValid = true;
+            }
 
-        // Initialize view model
-        $oView = new ViewModel(array(
-            'title' => 'Suppression du commentaire',
-        ));
-        
-        return $oView;
+            return $oView;
+        }
     }
 
 }
