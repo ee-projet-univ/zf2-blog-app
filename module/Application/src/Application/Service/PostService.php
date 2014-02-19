@@ -19,8 +19,7 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
         $oPostEntity->setContent($aData['content']);
      
         // Données à récupérer
-        $current_user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity()->getId();
-        $oPostEntity->setAuthor($this->getServiceLocator()->get('UserRepository')->find((int) $current_user));
+        $oPostEntity->setAuthor($this->getServiceLocator()->get('UserService')->getCurrentUserEntity());
 
         // Création du billet
         $newPost = $this->getServiceLocator()->get('PostRepository')->createPostEntity($oPostEntity);

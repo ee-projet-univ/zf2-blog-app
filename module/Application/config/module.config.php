@@ -147,7 +147,8 @@ return array(
             // Services
             'PostService' => 'Application\Factory\PostServiceFactory',
             'TagService' => 'Application\Factory\TagServiceFactory',
-            //Repository
+            'UserService' => 'Application\Factory\UserServiceFactory',
+            // Repository
             'PostRepository' => 'Application\Factory\PostRepositoryFactory',
             'TagRepository' => 'Application\Factory\TagRepositoryFactory',
             'UserRepository' => 'Application\Factory\UserRepositoryFactory',

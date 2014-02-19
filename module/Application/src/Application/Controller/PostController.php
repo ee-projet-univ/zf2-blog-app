@@ -73,24 +73,27 @@ class PostController extends AbstractActionController
      * @return \Zend\View\Model\ViewModel
      */
     public function updateAction() {
-        // TODO: Vérifier admin ou possesseur ET is_deleted = false
         $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
         $post = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId((int) $pid);
-        $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $pid);
-        $t = array();
-        foreach($tags as $k => $v) $t[$k] = $v->getName();
+        $userme = $this->getServiceLocator()->get('UserService')->getCurrentUserEntity();
 
-        if($post == null) {
+        if($post == null || $post->isDeleted()
+        || ($post->getAuthor()->getId() != $userme->getId() && $userme->getRoles()[0]->getRoleId() != "administrator"))
+        {
             $this->getResponse()->setStatusCode(404);
             return;
         }
         else {
-            // Initialize view model
+            $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $pid);
+            $t = array();
+            foreach($tags as $k => $v) $t[$k] = $v->getName();
+
             $bind = array('title' => $post->getTitle(),
                 'content' => $post->getContent(),
                 'tag' => implode(" ", $t),
                 'submit' => 'Éditer');
 
+            // Initialize view model
             $oView = new ViewModel(array(
                 'title' => 'Édition billet',
                 'form' => $this->getServiceLocator()->get('PostForm')->setData($bind),
