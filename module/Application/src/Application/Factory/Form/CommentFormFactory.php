@@ -12,10 +12,7 @@ class CommentFormFactory implements \Zend\ServiceManager\FactoryInterface
      */
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $oServiceLocator) {
         $oForm = new \Application\Form\CommentForm('comment');
-        return $oForm
-                        ->setHydrator(new \DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity($oServiceLocator->get('Doctrine\ORM\EntityManager'), false))
-                        ->setObject(new \Application\Entity\Comment())
-                        ->setInputFilter(new \Application\InputFilter\CommentInputFilter());
+        return $oForm->setInputFilter(new \Application\InputFilter\CommentInputFilter());
     }
 
 }

@@ -10,6 +10,17 @@ class CommentService implements \Zend\ServiceManager\ServiceLocatorAwareInterfac
      * @param \Application\Entity\Comment $oCommentEntity
      * @return \Application\Service\CommentService
      */
+    public function updateComment(array $aData, \Application\Entity\Comment $oCommentEntity) {
+        $oCommentEntity->setContent($aData['content']);
+        $this->getServiceLocator()->get('CommentRepository')->updateCommentEntity($oCommentEntity);
+
+        return $this;
+    }
+    
+    /**
+     * @param \Application\Entity\Comment $oCommentEntity
+     * @return \Application\Service\CommentService
+     */
     public function deleteComment(\Application\Entity\Comment $oCommentEntity) {
         $this->getServiceLocator()->get('CommentRepository')->deleteCommentEntity($oCommentEntity);
         

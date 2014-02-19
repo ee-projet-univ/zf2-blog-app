@@ -25,22 +25,34 @@ class CommentController extends AbstractActionController
     }
     
     public function updateAction() {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
         $cid = intval($this->getEvent()->getRouteMatch()->getParam('cid'));
-        $comm = $em->find('Application\Entity\Comment', (int) $cid);
+        $comm = $this->getServiceLocator()->get('CommentService')->getCommentEntityByCommentId((int) $cid);
+        $userme = $this->getServiceLocator()->get('UserService')->getCurrentUserEntity();
 
-        if($comm == null) {
+        if($comm == null || $comm->isDeleted()
+        || ($comm->getAuthor()->getId() != $userme->getId() && $userme->getRoles()[0]->getRoleId() != "administrator"))
+        {
             $this->getResponse()->setStatusCode(404);
             return;
         }
         else {
+            $bind = array('content' => $comm->getContent(),
+                'submit' => 'Éditer');
+
             // Initialize view model
             $oView = new ViewModel(array(
                 'title' => 'Édition du commentaire',
-                'form' => $this->getServiceLocator()->get('CommentForm')->bind($comm),
+                'form' => $this->getServiceLocator()->get('CommentForm')->setData($bind),
                 'isValid' => false
             ));
+            
+            if ($this->getRequest()->isPost()
+                && $oView->form->setData($this->params()->fromPost())->isValid()
+                //Create user through the user service
+                && $this->getServiceLocator()->get('CommentService')->updateComment($oView->form->getData(), $comm))
+            {
+                $oView->isValid = true;
+            }
 
             return $oView;
         }
