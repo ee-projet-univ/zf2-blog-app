@@ -42,6 +42,7 @@ class PostController extends AbstractActionController
             'nb_comment' => $nb_comment,
             'title' => 'Consultation d’un billet',
             'post' => $post,
+            'userme' => $this->getServiceLocator()->get('UserService')->getCurrentUserEntity(),
             'comment' => $ten_comment));
     }
 

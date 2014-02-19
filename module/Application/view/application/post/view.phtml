@@ -24,7 +24,7 @@
                 <a><span class="glyphicon glyphicon-star"></span></a>
             </span>
             <?php
-            if ($post->getAuthor()->getUsername() == $this->zfcUserDisplayName())
+            if ($post->getAuthor()->getId() == $userme->getId() || $userme->getRoles()[0]->getRoleId() == "administrator")
             {
                 echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('post-crud', array('action' => 'delete','pid' => $post->getId())).'"></a>';
                 echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('post-crud', array('action' => 'update','pid' => $post->getId())).'"></a>';
