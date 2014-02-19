@@ -17,4 +17,15 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
         return $oTagEntity;
     }
 
+    /**
+     * Delete tag entity into db
+     * @param \Application\Entity\Tag $oTagEntity
+     * @return \Application\Entity\Tag
+     */
+    public function deleteTagEntity(\Application\Entity\Tag $oTagEntity) {
+        $this->_em->remove($oTagEntity);
+        $this->_em->flush();
+
+        return $oTagEntity;
+    }
 }

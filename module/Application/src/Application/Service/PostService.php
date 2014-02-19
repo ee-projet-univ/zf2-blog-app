@@ -51,14 +51,23 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
         $this->getServiceLocator()->get('PostRepository')->updatePostEntity($oPostEntity);
        
         /** Les tags **/
-        /*$tags = explode(' ', $aData['tag']);
+        // Suppression de ceux existants
+        $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $oPostEntity->getId());
+        $t = array();
+        foreach($tags as $t)
+        {
+            $this->getServiceLocator()->get('TagRepository')->deleteTagEntity($t);
+        }
+
+        // Re-création
+        $tags = explode(' ', $aData['tag']);
         foreach($tags as $t)
         {
             $oTagEntity = new \Application\Entity\Tag();
             $oTagEntity->setPost($oPostEntity);
             $oTagEntity->setName($t);
             $this->getServiceLocator()->get('TagRepository')->createTagEntity($oTagEntity);
-        }*/
+        }
 
         return $this;
     }
