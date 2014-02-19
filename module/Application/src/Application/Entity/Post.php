@@ -77,23 +77,23 @@ class Post {
     }
 
     /**
-     * Get author id.
+     * Get author.
      *
-     * @return int
+     * @return \Application\Entity\User
      */
-    public function getAuthorId() {
+    public function getAuthor() {
         return $this->author;
     }
 
     /**
-     * Set author id.
+     * Set author.
      *
-     * @param int $sAuthorId
+     * @param \Application\Entity\User $sAuthor
      *
      * @return void
      */
-    public function setAuthorId($sAuthorId) {
-        $this->author = (int) $sAuthorId;
+    public function setAuthor($sAuthor) {
+        $this->author = $sAuthor;
     }
 
     /**

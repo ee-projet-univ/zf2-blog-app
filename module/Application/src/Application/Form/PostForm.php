@@ -4,14 +4,9 @@ namespace Application\Form;
 
 class PostForm extends \Zend\Form\Form
 {
-
-    /**
-     * @see \Zend\Form\Form::prepare()
-     */
-    public function prepare() {
-        if ($this->isPrepared)
-            return $this;
-
+    public function __construct($sName, $aOptions = array())
+    {
+        parent::__construct($sName, $aOptions);
         $title = new \Zend\Form\Element\Text('title');
         $title->setLabel('Titre')
                 ->setAttributes(array('required' => true));
@@ -29,8 +24,5 @@ class PostForm extends \Zend\Form\Form
         $submit->setAttributes(array('class' => 'btn btn-primary'));
 
         $this->add($title)->add($content)->add($tag)->add($submit);
-
-        return parent::prepare();
     }
-
 }

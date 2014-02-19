@@ -3,7 +3,7 @@
 namespace Application\Entity;
 
 /**
- * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="\Application\Repository\UserRepository")
  * @\Doctrine\ORM\Mapping\Table(name="users")
  */
 class User implements \ZfcUser\Entity\UserInterface, \BjyAuthorize\Provider\Role\ProviderInterface

@@ -53,14 +53,14 @@ class PostController extends AbstractActionController
         // Initialize view model
         $oView = new ViewModel(array(
             'title' => 'Nouveau billet',
-            'form' => $this->getServiceLocator()->get('PostForm')->bind($oPostEntity = new \Application\Entity\Post()),
+            'form' => $this->getServiceLocator()->get('PostForm'),
             'isValid' => false
         ));
 
         if (
                 $this->getRequest()->isPost() && $oView->form->setData($this->params()->fromPost())->isValid()
                 //Create user through the user service
-                && $this->getServiceLocator()->get('PostService')->createPost($oPostEntity)
+                && $this->getServiceLocator()->get('PostService')->createPost($oView->form->getData())
         ) {
             $oView->isValid = true;
         }
@@ -86,7 +86,7 @@ class PostController extends AbstractActionController
             // Initialize view model
             $oView = new ViewModel(array(
                 'title' => 'Édition billet',
-                'form' => $this->getServiceLocator()->get('PostForm')->bind($post),
+                'form' => $this->getServiceLocator()->get('PostForm')->bind($post), //setData
                 'isValid' => false
             ));
 

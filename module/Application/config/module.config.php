@@ -142,16 +142,18 @@ return array(
         ),
         'factories' => array(
             // Form
-            'PostForm' => 'Application\Factory\Form\PostFormFactory',
             'CommentForm' => 'Application\Factory\Form\CommentFormFactory',
+            'PostForm' => 'Application\Factory\Form\PostFormFactory',
             // Services
             'PostService' => 'Application\Factory\PostServiceFactory',
             //Repository
             'PostRepository' => 'Application\Factory\PostRepositoryFactory',
+            'TagRepository' => 'Application\Factory\TagRepositoryFactory',
+            'UserRepository' => 'Application\Factory\UserRepositoryFactory',
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
+        'locale' => 'fr_FR',
         'translation_file_patterns' => array(
             array(
                 'type' => 'gettext',

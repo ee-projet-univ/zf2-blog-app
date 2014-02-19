@@ -2,7 +2,7 @@
 namespace Application\Entity;
 
 /**
- * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="\Application\Repository\TagRepository")
  * @\Doctrine\ORM\Mapping\Table(name="tag")
  */
 class Tag
@@ -54,36 +54,25 @@ class Tag
     }
 
     /**
-     * Get post id.
+     * Get post.
      *
-     * @return int
+     * @return \Application\Entity\Post
      */
-    public function getPostId()
+    public function getPost()
     {
         return $this->post;
     }
 
     /**
-     * Get post title.
+     * Set post.
      *
-     * @return string
-     */
-    public function getPostTitle()
-    {
-        // TODO: Return post title, not post ID (JOIN ON Post)
-        return $this->post;
-    }
-
-    /**
-     * Set post id.
-     *
-     * @param int $sPostId
+     * @param \Application\Entity\Post $sPostId
      *
      * @return void
      */
-    public function setPostId($sPostId)
+    public function setPost($sPost)
     {
-        $this->post = (int) $sPostId;
+        $this->post = $sPost;
     }
 
     /**
