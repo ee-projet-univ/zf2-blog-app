@@ -114,18 +114,31 @@ class PostController extends AbstractActionController
     }
     
     public function deleteAction() {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
         $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
-        $post = $em->find('Application\Entity\Post', (int) $pid);
+        $sur = intval($this->getEvent()->getRouteMatch()->getParam('sur'));
+        $post = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId((int) $pid);
+        $userme = $this->getServiceLocator()->get('UserService')->getCurrentUserEntity();
 
-        if($post == null) $this->getResponse()->setStatusCode(404);
+        if($post == null || $post->isDeleted()
+        || ($post->getAuthor()->getId() != $userme->getId() && $userme->getRoles()[0]->getRoleId() != "administrator"))
+        {
+            $this->getResponse()->setStatusCode(404);
+            return;
+        }
+        else {
+            // Initialize view model
+            $oView = new ViewModel(array(
+                'title' => 'Suppression billet',
+                'pid' => $pid,
+                'isValid' => false
+            ));
+            
+            if($sur && $this->getServiceLocator()->get('PostService')->deletePost($post))
+            {
+                $oView->isValid = true;
+            }
 
-        $oView = new ViewModel(array(
-            'title' => 'Suppression billet',
-        ));
-
-        return $oView;
+            return $oView;
+        }
     }
-
 }

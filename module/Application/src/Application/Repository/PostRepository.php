@@ -39,7 +39,7 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
      * @return \Application\Entity\Post
      */
     public function deletePostEntity(\Application\Entity\Post $oPostEntity) {
-        $this->_em->remove($oPostEntity);
+        $oPostEntity->setDeleted(true);
         $this->_em->flush();
 
         return $oPostEntity;

@@ -2,7 +2,7 @@
 namespace Application\Entity;
 
 /**
- * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="\Application\Repository\CommentRepository")
  * @\Doctrine\ORM\Mapping\Table(name="comment")
  */
 class Comment

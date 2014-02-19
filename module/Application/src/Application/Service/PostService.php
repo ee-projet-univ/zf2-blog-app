@@ -52,7 +52,6 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
         /** Les tags **/
         // Suppression de ceux existants
         $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $oPostEntity->getId());
-        $t = array();
         foreach($tags as $t)
         {
             $this->getServiceLocator()->get('TagRepository')->deleteTagEntity($t);
@@ -68,6 +67,31 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
             $this->getServiceLocator()->get('TagRepository')->createTagEntity($oTagEntity);
         }
 
+        return $this;
+    }
+    
+    /**
+     * @param \Application\Entity\Post $oPostEntity
+     * @return \Application\Service\PostService
+     */
+    public function deletePost(\Application\Entity\Post $oPostEntity) {
+        // Suppression des tags
+        $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $oPostEntity->getId());
+        foreach($tags as $t)
+        {
+            $this->getServiceLocator()->get('TagRepository')->deleteTagEntity($t);
+        }
+      
+        // Suppression des commentaires
+        $comms = $this->getServiceLocator()->get('CommentService')->getCommentEntitiesByPostId((int) $oPostEntity->getId());
+        foreach($comms as $c)
+        {
+            $this->getServiceLocator()->get('CommentRepository')->deleteCommentEntity($c);
+        }
+
+        // Suppression du billet
+        $this->getServiceLocator()->get('PostRepository')->deletePostEntity($oPostEntity);
+        
         return $this;
     }
     

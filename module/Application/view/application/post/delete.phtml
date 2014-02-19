@@ -3,15 +3,26 @@
         <h3 class="panel-title"><?php echo $title; ?></h3>
     </div>
     <div class="panel-body" style="padding: 30px">
-        <p class ="text-center">
-            <strong>Êtes-vous sur de vouloir supprimer ce billet ?</strong>
-        </p>
-        <p class ="text-center">
-            <a class="btn btn-success" href="#" title="Supprimer votre billet">Oui</a>
-            <a class="btn btn-danger" href="#" title="Annuler">Non</a>
-        </p>
-        <p class ="text-center">
-            <div class="alert alert-info">Si vous supprimez votre post, les commentaires seront également perdus.</div>
-        </p>
+        <?php
+        if($isValid)
+        {
+            ?>
+            <div class="alert alert-info">Billet supprimé avec succès.</div>
+            <?php
+        }
+        else
+        {
+            ?>
+            <p class="text-center">
+                <strong>Êtes-vous sûr-e de vouloir supprimer ce billet ?</strong>
+            </p>
+            <p class="text-center">
+                <a class="btn btn-danger" href="<?php echo $this->url('post-crud', array('action' => 'delete', 'pid' => $pid, 'sur' => true)); ?>" title="Supprimer ce billet">Oui</a>
+                <a class="btn btn-success" href="<?php echo $this->url('post-view', array('pid' => $pid)); ?>" title="Annuler">Non</a>
+            </p>
+            <div class="alert alert-info">Si vous supprimez ce billet, les commentaires associés seront également perdus.</div>
+            <?php
+        }
+        ?>
     </div>
 </div>

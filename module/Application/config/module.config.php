@@ -145,10 +145,12 @@ return array(
             'CommentForm' => 'Application\Factory\Form\CommentFormFactory',
             'PostForm' => 'Application\Factory\Form\PostFormFactory',
             // Services
+            'CommentService' => 'Application\Factory\CommentServiceFactory',
             'PostService' => 'Application\Factory\PostServiceFactory',
             'TagService' => 'Application\Factory\TagServiceFactory',
             'UserService' => 'Application\Factory\UserServiceFactory',
             // Repository
+            'CommentRepository' => 'Application\Factory\CommentRepositoryFactory',
             'PostRepository' => 'Application\Factory\PostRepositoryFactory',
             'TagRepository' => 'Application\Factory\TagRepositoryFactory',
             'UserRepository' => 'Application\Factory\UserRepositoryFactory',
