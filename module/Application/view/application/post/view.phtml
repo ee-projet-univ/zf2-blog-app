@@ -8,29 +8,29 @@
     <div class="panel-body">
         <p><?php echo nl2br($post->getContent()); ?>
         <?php
-        if($post->getDateCreate() != $post->getDateEdit()) {
+        if($post->getDateCreate() != $post->getDateEdit())
+        {
             ?>
             <p><em>Dernière modification le <?php echo $post->getDateEdit()->format('d\/m\/Y\ \à\ H\:i'); ?></em></p>
-                <?php
-                if ($post->getAuthor()->getUsername() == $this->zfcUserDisplayName()) {
-                ?>
-                    <p>
-                        <span class="pull-left">
-                            <a><span class="glyphicon glyphicon-star"></span></a>
-                            <a><span class="glyphicon glyphicon-star"></span></a>
-                            <a><span class="glyphicon glyphicon-star"></span></a>
-                            <a><span class="glyphicon glyphicon-star"></span></a>
-                            <a><span class="glyphicon glyphicon-star"></span></a>
-                        </span>
-                        <?php 
-                        echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('post-crud', array('action' => 'delete','pid' => $post->getId())).'"></a>';
-                        echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('post-crud', array('action' => 'update','pid' => $post->getId())).'"></a>'
-                        ?>
-                    </p>
             <?php
-                }
         }
         ?>
+        <p>
+            <span class="pull-left">
+                <a><span class="glyphicon glyphicon-star"></span></a>
+                <a><span class="glyphicon glyphicon-star"></span></a>
+                <a><span class="glyphicon glyphicon-star"></span></a>
+                <a><span class="glyphicon glyphicon-star"></span></a>
+                <a><span class="glyphicon glyphicon-star"></span></a>
+            </span>
+            <?php
+            if ($post->getAuthor()->getUsername() == $this->zfcUserDisplayName())
+            {
+                echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('post-crud', array('action' => 'delete','pid' => $post->getId())).'"></a>';
+                echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('post-crud', array('action' => 'update','pid' => $post->getId())).'"></a>';
+            }
+            ?>
+        </p>
     </div>
     <div class="panel-footer">
         <p class="panel-title">

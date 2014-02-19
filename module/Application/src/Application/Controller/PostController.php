@@ -57,11 +57,11 @@ class PostController extends AbstractActionController
             'isValid' => false
         ));
 
-        if (
-                $this->getRequest()->isPost() && $oView->form->setData($this->params()->fromPost())->isValid()
-                //Create user through the user service
-                && $this->getServiceLocator()->get('PostService')->createPost($oView->form->getData())
-        ) {
+        if ($this->getRequest()->isPost()
+            && $oView->form->setData($this->params()->fromPost())->isValid()
+            //Create user through the user service
+            && $this->getServiceLocator()->get('PostService')->createPost($oView->form->getData()))
+        {
             $oView->isValid = true;
         }
 
@@ -73,10 +73,12 @@ class PostController extends AbstractActionController
      * @return \Zend\View\Model\ViewModel
      */
     public function updateAction() {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
+        // TODO: Vérifier admin ou possesseur ET is_deleted = false
         $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
-        $post = $em->find('Application\Entity\Post', (int) $pid);
+        $post = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId((int) $pid);
+        $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $pid);
+        $t = array();
+        foreach($tags as $k => $v) $t[$k] = $v->getName();
 
         if($post == null) {
             $this->getResponse()->setStatusCode(404);
@@ -84,11 +86,24 @@ class PostController extends AbstractActionController
         }
         else {
             // Initialize view model
+            $bind = array('title' => $post->getTitle(),
+                'content' => $post->getContent(),
+                'tag' => implode(" ", $t),
+                'submit' => 'Éditer');
+
             $oView = new ViewModel(array(
                 'title' => 'Édition billet',
-                'form' => $this->getServiceLocator()->get('PostForm')->bind($post), //setData
+                'form' => $this->getServiceLocator()->get('PostForm')->setData($bind),
                 'isValid' => false
             ));
+            
+            if ($this->getRequest()->isPost()
+                && $oView->form->setData($this->params()->fromPost())->isValid()
+                //Create user through the user service
+                && $this->getServiceLocator()->get('PostService')->updatePost($oView->form->getData(), $post))
+            {
+                $oView->isValid = true;
+            }
 
             return $oView;
         }

@@ -146,6 +146,7 @@ return array(
             'PostForm' => 'Application\Factory\Form\PostFormFactory',
             // Services
             'PostService' => 'Application\Factory\PostServiceFactory',
+            'TagService' => 'Application\Factory\TagServiceFactory',
             //Repository
             'PostRepository' => 'Application\Factory\PostRepositoryFactory',
             'TagRepository' => 'Application\Factory\TagRepositoryFactory',
