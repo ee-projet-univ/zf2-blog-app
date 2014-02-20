@@ -7,6 +7,26 @@ class CommentService implements \Zend\ServiceManager\ServiceLocatorAwareInterfac
     use \Zend\ServiceManager\ServiceLocatorAwareTrait;
 
     /**
+     * @param \Application\Entity\Post $oPostEntity
+     * @return \Application\Service\CommentService
+     */
+    public function createComment(array $aData, \Application\Entity\Post $oPostEntity) {
+        $oCommentEntity = new \Application\Entity\Comment();
+
+        // Données du formulaire
+        $oCommentEntity->setContent($aData['content']);
+     
+        // Données à récupérer
+        $oCommentEntity->setPost($oPostEntity);
+        $oCommentEntity->setAuthor($this->getServiceLocator()->get('UserService')->getCurrentUserEntity());
+
+        // Création du commentaire
+        $this->getServiceLocator()->get('CommentRepository')->createCommentEntity($oCommentEntity);
+ 
+        return $this;
+    }
+
+    /**
      * @param \Application\Entity\Comment $oCommentEntity
      * @return \Application\Service\CommentService
      */

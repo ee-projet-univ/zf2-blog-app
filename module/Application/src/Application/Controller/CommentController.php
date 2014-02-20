@@ -7,21 +7,32 @@ use Zend\View\Model\ViewModel;
 class CommentController extends AbstractActionController
 {
     public function createAction() {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-
         $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
-        $post = $em->find('Application\Entity\Post', (int) $pid);
+        $post = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId((int) $pid);
 
-        if($post == null) $this->getResponse()->setStatusCode(404);
+        if($post == null || $post->isDeleted())
+        {
+            $this->getResponse()->setStatusCode(404);
+            return;
+        }
+        else {
+            // Initialize view model
+            $oView = new ViewModel(array(
+                'title' => 'Nouveau commentaire',
+                'form' => $this->getServiceLocator()->get('CommentForm'),
+                'isValid' => false
+            ));
 
-        // Initialize view model
-        $oView = new ViewModel(array(
-            'title' => 'Nouveau commentaire',
-            'form' => $this->getServiceLocator()->get('CommentForm')->bind($oCommentEntity = new \Application\Entity\Comment()),
-            'isValid' => false
-        ));
-        
-        return $oView;
+            if ($this->getRequest()->isPost()
+                && $oView->form->setData($this->params()->fromPost())->isValid()
+                //Create user through the user service
+                && $this->getServiceLocator()->get('CommentService')->createComment($oView->form->getData(), $post))
+            {
+                $oView->isValid = true;
+            }
+
+            return $oView;
+        }
     }
     
     public function updateAction() {
