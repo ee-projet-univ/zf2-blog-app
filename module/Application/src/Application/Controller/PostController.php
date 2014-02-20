@@ -36,12 +36,18 @@ class PostController extends AbstractActionController
 
         $dql->setFirstResult($offset)->setMaxResults($limit);
         $ten_comment = $dql->getArrayResult();
+        
+        // Les tags
+        $tags = $this->getServiceLocator()->get('TagService')->getTagEntitiesByPostId((int) $pid);
+        $t = array();
+        foreach($tags as $k => $v) $t[$k] = $v->getName();
 
         return new ViewModel(array('page' => $page,
             'nb_pages' => $nb_pages,
             'nb_comment' => $nb_comment,
             'title' => 'Consultation d’un billet',
             'post' => $post,
+            'tags' => $t,
             'userme' => $this->getServiceLocator()->get('UserService')->getCurrentUserEntity(),
             'comment' => $ten_comment));
     }

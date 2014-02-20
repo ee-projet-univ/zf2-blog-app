@@ -16,10 +16,9 @@ class SearchController extends AbstractActionController
 {
     public function indexAction()
     {
-        if (isset($_GET['tag'])) {
-            // TODO: Récupération par méthode GET
-        }
-        // TODO: Récupération par méthode POST
-        return new ViewModel();
+        $tag = $this->getEvent()->getRouteMatch()->getParam('tag');
+
+        return new ViewModel(array('title' => 'Résultats de la recherche pour le tag '.$tag,
+                'tag' => $tag));
     }
 }

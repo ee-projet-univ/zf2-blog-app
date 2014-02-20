@@ -33,6 +33,15 @@
         </p>
     </div>
     <div class="panel-footer">
+        <strong>Tags&nbsp;:</strong>
+        <?php
+        foreach($tags as $t)
+        {
+            echo '<a href="'.$this->url('search', array('tag' => $t)).'">'.$t.'</a> ';
+        }
+        ?>
+    </div>
+    <div class="panel-footer">
         <p class="panel-title">
             <span class="zf-green">Posté le <?php echo $post->getDateCreate()->format('d\/m\/Y\ \à\ H\:i'); ?></span>
             <img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png'); ?>" alt="ZF2" />
