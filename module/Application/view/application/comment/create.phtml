@@ -4,7 +4,11 @@
     </div>
     <div class="panel-body" style="padding: 0 30px">
         <?php
-        if($this->isValid === true) echo 'Formulaire envoyé';
+        if($this->isValid === true) { ?>
+        <div class="alert alert-success" style="margin-top: 20px;">
+            <?php echo 'Commentaire ajouté avec succès'; ?>
+        </div>
+        <?php }
         else {
             if(!empty($this->error)) echo $this->alert($this->error, 'alert-error', false);
             echo $this->form($this->form);
