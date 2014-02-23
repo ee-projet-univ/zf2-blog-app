@@ -1,0 +1,15 @@
+<h1>Sign In</h1>
+<?php
+$form = $this->loginForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcuser/login'));
+$form->setAttribute('method', 'post');
+if ($this->redirect) {
+    $form->add(new \Zend\Form\Element\Hidden('redirect', array('value' => $this->redirect)));
+}
+echo $this->form($form, null);
+if ($this->enableRegistration) {
+    echo 'Not registered? <a href="' . $this->url('zfcuser/register') . ($this->redirect ? '?redirect=' . $this->redirect : '') . '">Sign up!</a>';
+}
+
+
