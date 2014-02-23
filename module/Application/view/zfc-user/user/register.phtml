@@ -1,5 +1,8 @@
-<h1>Register</h1>
-
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Inscription</h3>
+    </div>
+    <div class="panel-body">
 <?php
 if (!$this->enableRegistration) {
     print "Registration is disabled";
@@ -30,3 +33,5 @@ $form->setAttribute('method', 'post');
         <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
     <?php endif ?>
 <?php echo $this->form()->closeTag() ?>
+    </div>
+</div>
