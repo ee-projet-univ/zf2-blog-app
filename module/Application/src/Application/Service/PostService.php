@@ -104,6 +104,24 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
     }
     
     public function countPosts() {
-        return count($this->getServiceLocator()->get('PostRepository')->findAll());
+        return count($this->getServiceLocator()->get('PostRepository')->findBy(array('is_deleted' => 0)));
+    }
+    
+    public function getFivePostsByTagName($offset, $tag) {
+        $oTagEntity = $this->getServiceLocator()->get('TagRepository')->findBy(array('name' => $tag));
+        $t = array();
+        for($i = 0; $i < count($oTagEntity); ++$i) {
+            $t[$i] = $oTagEntity[$i]->getPost()->getId();
+        }
+        return $this->getServiceLocator()->get('PostRepository')->findBy(array('is_deleted' => 0, 'id' => $t), array('date_create' => 'DESC'), 5, $offset);
+    }
+
+    public function countPostsByTagName($tag) {
+        $oTagEntity = $this->getServiceLocator()->get('TagRepository')->findBy(array('name' => $tag));
+        $t = array();
+        for($i = 0; $i < count($oTagEntity); ++$i) {
+            $t[$i] = $oTagEntity[$i]->getPost()->getId();
+        }
+        return count($this->getServiceLocator()->get('PostRepository')->findBy(array('is_deleted' => 0, 'id' => $t)));
     }
 }
