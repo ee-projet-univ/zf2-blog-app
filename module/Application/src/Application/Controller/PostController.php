@@ -42,14 +42,21 @@ class PostController extends AbstractActionController
         $t = array();
         foreach($tags as $k => $v) $t[$k] = $v->getName();
 
-        return new ViewModel(array('page' => $page,
+        $oView = new ViewModel(array('page' => $page,
             'nb_pages' => $nb_pages,
             'nb_comment' => $nb_comment,
             'title' => 'Consultation d’un billet',
             'post' => $post,
             'tags' => $t,
-            'userme' => $this->getServiceLocator()->get('UserService')->getCurrentUserEntity(),
             'comment' => $ten_comment));
+        
+        // La notation, si connecté
+        if($oUserMeEntity = $this->getServiceLocator()->get('UserService')->getCurrentUserEntity()) {
+            $oView->userme = $oUserMeEntity;
+            $oView->rating = $this->getServiceLocator()->get('RatingService')->getRatingEntityByPostAndUserEntities($post, $oUserMeEntity);
+        }
+
+        return $oView;
     }
 
     /**

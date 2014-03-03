@@ -19,6 +19,14 @@
         {
             ?>
             <p>
+                <?php
+                if($rating) {
+                    echo $rating->getValue().'/5';
+                }
+                else {
+                    echo 'Actuellement non noté';
+                }
+                ?>
                 <span class="pull-left">
                     <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>" title="Noter le billet 1/5"><span class="glyphicon glyphicon-star"></span></a>
                     <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>" title="Noter le billet 2/5"><span class="glyphicon glyphicon-star"></span></a>
