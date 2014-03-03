@@ -10,7 +10,7 @@ class RatingRepository extends \Doctrine\ORM\EntityRepository
      * @param \Application\Entity\Rating $oRatingEntity
      * @return \Application\Entity\Rating
      */
-    public function createRatingEntity(\Application\Entity\Rating $oPostEntity) {
+    public function createRatingEntity(\Application\Entity\Rating $oRatingEntity) {
         $this->_em->persist($oRatingEntity);
         $this->_em->flush();
 

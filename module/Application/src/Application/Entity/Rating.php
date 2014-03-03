@@ -34,12 +34,6 @@ class Rating
      * )
      */
     protected $post;
-    
-    /**
-     * @var datetime
-     * @\Doctrine\ORM\Mapping\Column(type="datetime", nullable=false)
-     */
-    protected $date;
 
     /**
      * @var smallint
@@ -70,47 +64,47 @@ class Rating
     }
 
     /**
-     * Get user id.
+     * Get user.
      *
-     * @return int
+     * @return \Application\Entity\User
      */
-    public function getUserId()
+    public function getUser()
     {
         return $this->user;
     }
 
     /**
-     * Set user id.
+     * Set user.
      *
-     * @param int $sUserId
+     * @param \Application\Entity\User $sUser
      *
      * @return void
      */
-    public function setUserId($sUserId)
+    public function setUser($sUser)
     {
-        $this->user = (int) $sUserId;
+        $this->user = $sUser;
     }
 
     /**
-     * Get post id.
+     * Get post.
      *
-     * @return int
+     * @return \Application\Entity\Post
      */
-    public function getPostId()
+    public function getPost()
     {
         return $this->post;
     }
 
     /**
-     * Set post id.
+     * Set post.
      *
-     * @param int $sPostId
+     * @param \Application\Entity\Post $sPost
      *
      * @return void
      */
-    public function setPostId($sPostId)
+    public function setPost($sPost)
     {
-        $this->post = (int) $sPostId;
+        $this->post = $sPost;
     }
     
     /**
