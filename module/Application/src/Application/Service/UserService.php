@@ -7,7 +7,9 @@ class UserService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
     use \Zend\ServiceManager\ServiceLocatorAwareTrait;
     
     public function getCurrentUserEntity() {
-        $uid = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity()->getId();
-        return $this->getServiceLocator()->get('UserRepository')->find((int) $uid);
+        if($user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity()) {
+            return $this->getServiceLocator()->get('UserRepository')->find((int) $user->getId());
+        }
+        return null;
     }
 }
