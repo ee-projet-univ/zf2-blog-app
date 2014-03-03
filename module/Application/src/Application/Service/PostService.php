@@ -99,4 +99,11 @@ class PostService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
         return $this->getServiceLocator()->get('PostRepository')->find($iPostId);
     }
 
+    public function getFivePosts($offset) {
+        return $this->getServiceLocator()->get('PostRepository')->findBy(array('is_deleted' => 0), array('date_create' => 'DESC'), 5, $offset);
+    }
+    
+    public function countPosts() {
+        return count($this->getServiceLocator()->get('PostRepository')->findAll());
+    }
 }

@@ -1,27 +1,27 @@
 <?php
 use \Michelf\Markdown;
 
-foreach($this->post as $post)
+foreach($post as $p)
 {     
     ?>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <a href="<?php echo $this->url('post-view', array('pid' => $post['id'])); ?>"><?php echo $post['title']; ?></a>
-                <span class="pull-right">par <strong><?php echo $post['author']['username']; ?></strong></span>
+                <a href="<?php echo $this->url('post-view', array('pid' => $p->getId())); ?>"><?php echo $p->getTitle(); ?></a>
+                <span class="pull-right">par <strong><?php echo $p->getAuthor()->getUsername(); ?></strong></span>
             </h3>
         </div>
         <div class="panel-body">
             <p>
                 <?php
-                if(strlen($post['content']) > 300) echo Markdown::defaultTransform(substr($post['content'], 0, 300).'[…]');
-                else echo Markdown::defaultTransform($post['content']);
+                if(strlen($p->getContent()) > 300) echo Markdown::defaultTransform(substr($p->getContent(), 0, 300).'[…]');
+                else echo Markdown::defaultTransform($p->getContent());
                 ?>
             </p>
-            <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post-view', array('pid' => $post['id'])); ?>">Lire la suite &raquo;</a></p>
+            <p><a class="btn btn-success pull-right" href="<?php echo $this->url('post-view', array('pid' => $p->getId())); ?>">Lire la suite &raquo;</a></p>
         </div>
         <div class="panel-footer">
-            <p class="panel-title"><span class="zf-green">Posté le <?php $date = $post['date_create']; echo $date->format('d\/m\/Y\ \à\ H\:i'); ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
+            <p class="panel-title"><span class="zf-green">Posté le <?php echo $p->getDateCreate()->format('d\/m\/Y\ \à\ H\:i'); ?></span><img class="pull-right" src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="ZF2" /></p>
         </div>
     </div>
     <?php
@@ -32,26 +32,26 @@ foreach($this->post as $post)
     <ul class="pagination">
         <?php
         // Page précédente
-        if($this->page == 1) {
+        if($page == 1) {
             echo '<li class="disabled"><a href="#">&laquo;</a></li>';
         }
         else {
-            echo '<li><a href="'.$this->url('home', array('page' => ($this->page - 1))).'">&laquo;</a></li>';
+            echo '<li><a href="'.$this->url('home', array('page' => ($page - 1))).'">&laquo;</a></li>';
         }
 
         // Liste des pages
         for($i = 1; $i <= $nb_pages; ++$i) {
-            echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
+            echo '<li'.(($i == $page) ? ' class="active"' : '').'>'
                . '<a href="'.$this->url('home', array('page' => $i)).'">'.$i.'</a>'
                . '</li>';
         }
 
         // Page suivante
-        if($this->page == $this->nb_pages) {
+        if($page == $nb_pages) {
             echo '<li class="disabled"><a href="#">&raquo;</a></li>';
         }
         else {
-            echo '<li><a href="'.$this->url('home', array('page' => ($this->page + 1))).'">&raquo;</a></li>';
+            echo '<li><a href="'.$this->url('home', array('page' => ($page + 1))).'">&raquo;</a></li>';
         }
         ?>
     </ul>
