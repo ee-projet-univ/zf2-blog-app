@@ -69,6 +69,21 @@ return array(
                     ),
                 ),
             ),
+            'post-rate' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/post/rate[/:pid[/:rating]]',
+                    'constraints' => array(
+                        'pid' => '[0-9]*',
+                        'rating' => '(0|1|2|3|4|5)'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Post',
+                        'action' => 'rate',
+                    ),
+                ),
+            ),
             'comm-create' => array(
                 'type' => 'segment',
                 'options' => array(
@@ -117,11 +132,13 @@ return array(
             // Services
             'CommentService' => 'Application\Factory\CommentServiceFactory',
             'PostService' => 'Application\Factory\PostServiceFactory',
+            'RatingService' => 'Application\Factory\RatingServiceFactory',
             'TagService' => 'Application\Factory\TagServiceFactory',
             'UserService' => 'Application\Factory\UserServiceFactory',
             // Repository
             'CommentRepository' => 'Application\Factory\CommentRepositoryFactory',
             'PostRepository' => 'Application\Factory\PostRepositoryFactory',
+            'RatingRepository' => 'Application\Factory\RatingRepositoryFactory',
             'TagRepository' => 'Application\Factory\TagRepositoryFactory',
             'UserRepository' => 'Application\Factory\UserRepositoryFactory',
         ),
@@ -158,6 +175,7 @@ return array(
             'post/create' => __DIR__ . '/../view/application/post/create.phtml',
             'post/update' => __DIR__ . '/../view/application/post/update.phtml',
             'post/delete' => __DIR__ . '/../view/application/post/delete.phtml',
+            'post/rate' => __DIR__ . '/../view/application/post/rate.phtml',
             'comm/create' => __DIR__ . '/../view/application/comm/create.phtml',
             'comm/update' => __DIR__ . '/../view/application/comm/update.phtml',
             'comm/delete' => __DIR__ . '/../view/application/comm/delete.phtml',
@@ -222,7 +240,7 @@ return array(
                 ),
                 array(
                     'controller' => 'Application\Controller\Post',
-                    'action' => array('create', 'update', 'delete'),
+                    'action' => array('create', 'update', 'delete', 'rate'),
                     'roles' =>  'user'
                 ),
                 array(
@@ -249,6 +267,7 @@ return array(
                 array('route' => 'search', 'roles' => array('guest', 'user')),
                 array('route' => 'post-view', 'roles' => array('guest', 'user')),
                 array('route' => 'post-crud', 'roles' => array('user')),
+                array('route' => 'post-rate', 'roles' => array('user')),
                 array('route' => 'comm-create', 'roles' => array('user')),
                 array('route' => 'comm-ud', 'roles' => array('user')),
             ),

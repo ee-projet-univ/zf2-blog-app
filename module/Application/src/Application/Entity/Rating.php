@@ -2,7 +2,7 @@
 namespace Application\Entity;
 
 /**
- * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="\Application\Repository\RatingRepository")
  * @\Doctrine\ORM\Mapping\Table(name="rating")
  */
 class Rating

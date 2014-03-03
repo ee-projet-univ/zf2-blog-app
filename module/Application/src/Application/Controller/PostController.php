@@ -147,4 +147,25 @@ class PostController extends AbstractActionController
             return $oView;
         }
     }
+
+    public function rateAction() {
+        $pid = intval($this->getEvent()->getRouteMatch()->getParam('pid'));
+        $rating = intval($this->getEvent()->getRouteMatch()->getParam('rating'));
+        $post = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId((int) $pid);
+
+        if($post == null || $post->isDeleted() || !$this->getServiceLocator()->get('RatingService')->rate($post, $rating))
+        {
+            $this->getResponse()->setStatusCode(404);
+            return;
+        }
+        else {
+            // Initialize view model
+            $oView = new ViewModel(array(
+                'title' => 'Notation d’un billet',
+                'pid' => $pid
+            ));
+
+            return $oView;
+        }
+    }
 }
