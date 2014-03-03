@@ -91,31 +91,31 @@ use \Michelf\Markdown;
             </thead>
             <tbody>
                 <?php
-                foreach($this->comment as $comm)
+                foreach($comment as $c)
                 {
                     ?>
                     <tr>
-                        <td class="text-center"><?php echo $this->gravatar($comm['author']['email'])->setImgSize(100); ?></td>
+                        <td class="text-center"><?php echo $this->gravatar($c->getAuthor()->getEmail())->setImgSize(100); ?></td>
                         <td>
                             <?php
-                            echo Markdown::defaultTransform($comm['content']);
-                            if($comm['date_create'] != $comm['date_edit'])
+                            echo Markdown::defaultTransform($c->getContent());
+                            if($c->getDateCreate() != $c->getDateEdit())
                             {
                                 ?>
-                                <p><em>Dernière modification le <?php echo $comm['date_edit']->format('d\/m\/Y\ \à\ H\:i'); ?></em></p>
+                                <p><em>Dernière modification le <?php echo $c->getDateEdit()->format('d\/m\/Y\ \à\ H\:i'); ?></em></p>
                                 <?php
                             }
-                            if ($comm['author']['id'] == $userme->getId() || $userme->getRoles()[0]->getRoleId() == "administrator")
+                            if ($c->getAuthor()->getId() == $userme->getId() || $userme->getRoles()[0]->getRoleId() == "administrator")
                             {
-                                echo '<p><a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('comm-ud', array('action' => 'delete','cid' => $comm['id'])).'"></a>';
-                                echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('comm-ud', array('action' => 'update','cid' => $comm['id'])).'"></a></p>';
+                                echo '<p><a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('comm-ud', array('action' => 'delete','cid' => $c->getId())).'"></a>';
+                                echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('comm-ud', array('action' => 'update','cid' => $c->getId())).'"></a></p>';
                             }
                             ?>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center" style="border-top:#FFFFFF;"><strong><?php echo $comm['author']['username']; ?></strong></td>
-                        <td><span class="zf-green">Posté le <?php echo $comm['date_create']->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
+                        <td class="text-center" style="border-top:#FFFFFF;"><strong><?php echo $c->getAuthor()->getUsername(); ?></strong></td>
+                        <td><span class="zf-green">Posté le <?php echo $c->getDateCreate()->format('d\/m\/Y\ \à\ H\:i'); ?></span></td>
                     </tr>
                     <?php
                 } //foreach
@@ -130,26 +130,26 @@ use \Michelf\Markdown;
                     <ul class="pagination">
                         <?php
                         // Page précédente
-                        if($this->page == 1) {
+                        if($page == 1) {
                             echo '<li class="disabled"><a href="#">&laquo;</a></li>';
                         }
                         else {
-                            echo '<li><a href="'.$this->url('post-view', array('page' => ($this->page - 1))).'">&laquo;</a></li>';
+                            echo '<li><a href="'.$this->url('post-view', array('page' => ($page - 1))).'">&laquo;</a></li>';
                         }
 
                         // Liste des pages
                         for($i = 1; $i <= $nb_pages; ++$i) {
-                            echo '<li'.(($i == $this->page) ? ' class="active"' : '').'>'
+                            echo '<li'.(($i == $page) ? ' class="active"' : '').'>'
                                . '<a href="'.$this->url('post-view', array('page' => $i)).'">'.$i.'</a>'
                                . '</li>';
                         }
 
                         // Page suivante
-                        if($this->page == $this->nb_pages) {
+                        if($page == $nb_pages) {
                             echo '<li class="disabled"><a href="#">&raquo;</a></li>';
                         }
                         else {
-                            echo '<li><a href="'.$this->url('post-view', array('page' => ($this->page + 1))).'">&raquo;</a></li>';
+                            echo '<li><a href="'.$this->url('post-view', array('page' => ($page + 1))).'">&raquo;</a></li>';
                         }
                         ?>
                     </ul>

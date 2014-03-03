@@ -49,10 +49,18 @@ class CommentService implements \Zend\ServiceManager\ServiceLocatorAwareInterfac
     
     public function getCommentEntitiesByPostId($iPostId) {
         $oPostEntity = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId($iPostId);
-        return $this->getServiceLocator()->get('CommentRepository')->findBy(array('post' => $oPostEntity));
+        return $this->getServiceLocator()->get('CommentRepository')->findBy(array('post' => $oPostEntity, 'is_deleted' => 0));
     }
 
     public function getCommentEntityByCommentId($iCommentId) {
         return $this->getServiceLocator()->get('CommentRepository')->find($iCommentId);
+    }
+
+    public function getTenCommentsByPostEntity($offset, \Application\Entity\Post $oPostEntity) {
+        return $this->getServiceLocator()->get('CommentRepository')->findBy(array('post' => $oPostEntity, 'is_deleted' => 0), array('date_create' => 'ASC'), 10, $offset);
+    }
+    
+    public function countCommentsByPostEntity(\Application\Entity\Post $oPostEntity) {
+        return count($this->getServiceLocator()->get('CommentRepository')->findBy(array('post' => $oPostEntity, 'is_deleted' => 0)));
     }
 }
