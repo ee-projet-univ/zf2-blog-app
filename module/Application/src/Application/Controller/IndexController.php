@@ -30,4 +30,23 @@ class IndexController extends AbstractActionController
                                    'nb_pages' => $nb_pages,
                                    'post' => $post));
     }
+
+    public function searchAction()
+    {
+        $tag = $this->getEvent()->getRouteMatch()->getParam('tag');
+        $nb_pages = ceil($this->getServiceLocator()->get('PostService')->countPostsByTagName($tag) / 5);
+
+        $page = intval($this->getEvent()->getRouteMatch()->getParam('page'));
+        if($page == 0) ++$page;
+        if($page > $nb_pages) $page = 1;
+
+        $offset = ($page - 1) * 5;
+        $post = $this->getServiceLocator()->get('PostService')->getFivePostsByTagName($offset, $tag);
+
+        return new ViewModel(array('title' => 'Résultats de la recherche pour le tag '.$tag,
+                'page' => $page,
+                'nb_pages' => $nb_pages,
+                'post' => $post,
+                'tag' => $tag));
+    }
 }
