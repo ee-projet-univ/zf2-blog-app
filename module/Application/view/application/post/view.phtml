@@ -23,21 +23,6 @@ use \Michelf\Markdown;
             ?>
             <p>
                 <?php
-                if($rating) {
-                    echo $rating->getValue().'/5';
-                }
-                else {
-                    echo 'Actuellement non noté';
-                }
-                ?>
-                <span class="pull-left">
-                    <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>" title="Noter le billet 1/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>" title="Noter le billet 2/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>" title="Noter le billet 3/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>" title="Noter le billet 4/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>" title="Noter le billet 5/5"><span class="glyphicon glyphicon-star"></span></a>
-                </span>
-                <?php
                 if ($post->getAuthor()->getId() == $userme->getId() || $userme->getRoles()[0]->getRoleId() == "administrator")
                 {
                     echo '<a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('post-crud', array('action' => 'delete','pid' => $post->getId())).'"></a>';
@@ -48,6 +33,24 @@ use \Michelf\Markdown;
             <?php
         }
         ?>
+    </div>
+    <div class="panel-footer">
+        <?php
+                if($rating) { ?>
+                    <strong>Note de l'article&nbsp;:</strong>
+                    <?php echo$moyenne.'/5';
+                }
+                else {
+                    echo 'Actuellement non noté';
+                }
+                ?>
+                    <span class="pull-right"><strong>Changez votre vote (x/5) :</strong> 
+                    <a class="rating1" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>" title="Noter le billet 1/5"><span class="glyphicon glyphicon-star"></span></a>
+                    <a class="rating2" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>" title="Noter le billet 2/5"><span class="glyphicon glyphicon-star"></span></a>
+                    <a class="rating3" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>" title="Noter le billet 3/5"><span class="glyphicon glyphicon-star"></span></a>
+                    <a class="rating4" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>" title="Noter le billet 4/5"><span class="glyphicon glyphicon-star"></span></a>
+                    <a class="rating5" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>" title="Noter le billet 5/5"><span class="glyphicon glyphicon-star"></span></a>
+                </span>
     </div>
     <div class="panel-footer">
         <strong>Tags&nbsp;:</strong>

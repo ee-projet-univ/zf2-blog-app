@@ -17,7 +17,9 @@ return array(
             'css' => array('css'),
             'js' => array(
                 'js/jquery.min.js',
-                'js/bootstrap.min.js'
+                'js/bootstrap.min.js',
+                'js/mootools-core-1.4.5-full-nocompat.js',
+                'js/moostarrating.js'
             ),
             'media' => array('img','fonts')
         )
