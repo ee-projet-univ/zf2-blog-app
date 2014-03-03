@@ -32,6 +32,7 @@ class PostController extends AbstractActionController
             'title' => 'Consultation d’un billet',
             'post' => $post,
             'tags' => $t,
+            'moyenne' => $this->getServiceLocator()->get('RatingService')->getAverageRatingByPostEntity($post),
             'comment' => $comment));
         
         // La notation, si connecté

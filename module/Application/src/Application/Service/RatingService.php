@@ -42,4 +42,8 @@ class RatingService implements \Zend\ServiceManager\ServiceLocatorAwareInterface
         return $this->getServiceLocator()->get('RatingRepository')->findOneBy(array('post' => $oPostEntity,
                 'user' => $oUserEntity));
     }
+
+    public function getAverageRatingByPostEntity(\Application\Entity\Post $oPostEntity) {
+        return $this->getServiceLocator()->get('RatingRepository')->createQueryBuilder('r')->select('AVG(r.value) as average')->where('r.post = :post')->setParameter('post', $oPostEntity)->getQuery()->getResult()[0]['average'];
+    }
 }
