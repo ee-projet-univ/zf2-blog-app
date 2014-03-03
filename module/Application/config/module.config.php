@@ -29,7 +29,7 @@ return array(
                 'options' => array(
                     'route' => '/search[/:tag[/:page]]',
                     'constraints' => array(
-                        'tag' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'tag' => '[a-zA-Z]([a-zA-Z0-9_-]|\+)*',
                         'page' => '[0-9]*',
                     ),
                     'defaults' => array(

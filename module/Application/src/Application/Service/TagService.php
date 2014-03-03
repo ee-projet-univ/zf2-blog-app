@@ -10,4 +10,13 @@ class TagService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
         $oPostEntity = $this->getServiceLocator()->get('PostService')->getPostEntityByPostId($iPostId);
         return $this->getServiceLocator()->get('TagRepository')->findBy(array('post' => $oPostEntity));
     }
+    
+    public function getPostArrayByTagNames($tags) {
+        $oTagEntity = $this->getServiceLocator()->get('TagRepository')->findBy(array('name' => explode('+', $tags)));
+        $t = array();
+        for($i = 0; $i < count($oTagEntity); ++$i) {
+            $t[$i] = $oTagEntity[$i]->getPost()->getId();
+        }
+        return $t;
+    }
 }

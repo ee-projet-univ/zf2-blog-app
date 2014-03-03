@@ -33,20 +33,21 @@ class IndexController extends AbstractActionController
 
     public function searchAction()
     {
-        $tag = $this->getEvent()->getRouteMatch()->getParam('tag');
-        $nb_pages = ceil($this->getServiceLocator()->get('PostService')->countPostsByTagName($tag) / 5);
+        $tags = $this->getEvent()->getRouteMatch()->getParam('tag');
+        $filteredPosts = $this->getServiceLocator()->get('TagService')->getPostArrayByTagNames($tags);
+        $nb_pages = ceil($this->getServiceLocator()->get('PostService')->countPostsByPostArray($filteredPosts) / 5);
 
         $page = intval($this->getEvent()->getRouteMatch()->getParam('page'));
         if($page == 0) ++$page;
         if($page > $nb_pages) $page = 1;
 
         $offset = ($page - 1) * 5;
-        $post = $this->getServiceLocator()->get('PostService')->getFivePostsByTagName($offset, $tag);
+        $post = $this->getServiceLocator()->get('PostService')->getFivePostsByPostArray($offset, $filteredPosts);
 
-        return new ViewModel(array('title' => 'Résultats de la recherche pour le tag '.$tag,
+        return new ViewModel(array('title' => 'Résultats de la recherche pour le(s) tag(s) '.$tags,
                 'page' => $page,
                 'nb_pages' => $nb_pages,
                 'post' => $post,
-                'tag' => $tag));
+                'tags' => $tags));
     }
 }
