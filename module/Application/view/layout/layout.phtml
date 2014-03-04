@@ -68,24 +68,30 @@
                 </div>
 
                 <div class="col-md-4">
+                    <?php
+                    if($this->zfcUserIdentity()) {
+                        ?>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Mon compte</h3>
+                            </div>
+                            <div class="panel-body">
+                                    <p class="text-center"><b><?php echo $this->zfcUserDisplayName(); ?></b></p>
+                                    <p class="text-center"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail())->setImgSize(124); ?></p>
+                                    <p class="text-center"><a class="btn btn-success" href="<?php echo $this->url('post-crud', array('action' => 'create')); ?>">Ajouter un billet</a></p>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    else {
+                        echo $this->zfcUserLoginWidget();
+                    }
+                    ?>
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">Menu</h3>
                         </div>
                         <div class="panel-body">
-                            <?php
-                            if($this->zfcUserIdentity()) {
-                                ?>
-                                <p class="text-center"><b><?php echo $this->zfcUserDisplayName(); ?></b></p>
-                                <p class="text-center"><?php echo $this->gravatar($this->zfcUserIdentity()->getEmail())->setImgSize(124); ?></p>
-                                <p class="text-center"><a class="btn btn-success" href="<?php echo $this->url('post-crud', array('action' => 'create')); ?>">Ajouter un billet</a></p>
-                                <?php
-                            }
-                            else {
-                                echo $this->zfcUserLoginWidget();
-                            }
-                            ?>
-                            <hr />
                             <h3>Recherche</h3>
                             <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
                                 <div class="form-group">
