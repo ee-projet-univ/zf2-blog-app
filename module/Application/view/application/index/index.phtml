@@ -5,8 +5,31 @@ if(!$post)
 {
     ?>
     <div class="panel panel-default">
+        <div class="panel-heading">
+                <h3 class="panel-title">
+                    Recherche
+                </h3>
+        </div>
         <div class="panel-body">
-            <p>Pas de résultats.</p>
+            <p>Votre recherche n'a donné aucun résultat.</p>
+            <hr />
+            <h3>Réessayez</h3>
+            <form class="form-inline" method="post" action="<?php echo $this->url('search'); ?>" role="form">
+                <div class="form-group">
+                    <input id="tag" size="70" class="form-control" name="tag" type="text" placeholder="Recherche…" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="OK" class="btn btn-default" />
+                </div>
+            </form>
+            
+            <div class="alert alert-warning" style="margin-top: 10px;">
+                <strong>Conseils pour votre recherche :</strong>
+                <ul>
+                    <li>Utilisez des mots clés simples</li>
+                    <li>Évitez les combinaisons de mots</li>
+                </ul>
+            </div>
         </div>
     </div>
     <?php

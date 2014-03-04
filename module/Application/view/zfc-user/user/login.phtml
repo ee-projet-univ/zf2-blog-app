@@ -1,4 +1,8 @@
-<h3 style="margin-top: 0px;">Connexion</h3>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Connexion</h3>
+    </div>
+    <div class="panel-body">
 <?php
 $form = $this->loginForm;
 $form->prepare();
@@ -11,3 +15,5 @@ echo $this->form($form, null);
 if ($this->enableRegistration) {
     echo 'Not registered? <a href="' . $this->url('zfcuser/register') . ($this->redirect ? '?redirect=' . $this->redirect : '') . '">Sign up!</a>';
 }?>
+    </div>
+</div>
