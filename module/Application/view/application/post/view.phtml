@@ -36,21 +36,33 @@ use \Michelf\Markdown;
     </div>
     <div class="panel-footer">
         <?php
+            if (!$this->zfcUserIdentity()) {
+                ?>
+                <strong>Note de l'article&nbsp;:</strong>
+                <?php echo$moyenne.'/5';
+            } // Vue invité
+            else {
                 if($rating) { ?>
                     <strong>Note de l'article&nbsp;:</strong>
-                    <?php echo$moyenne.'/5';
+                    <?php echo$moyenne.'/5';?>
+                    <span class="pull-right">
+                        <a title="Supprimer" href="#">Supprimer votre note ! (2/5)</a>
+                    </span>
+                    <?php
                 }
                 else {
-                    echo 'Actuellement non noté';
+                    echo 'Notez !'; ?>
+                    <form class="rating" name="basic">
+                        <input type="radio" name="rating" value="1" onClick="javascript:location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>'">
+                        <input type="radio" name="rating" value="2" onClick="javascript:location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>'">
+                        <input type="radio" name="rating" value="3" onClick="javascript:location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>'">
+                        <input type="radio" name="rating" value="4" onClick="javascript:location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>'">
+                        <input type="radio" name="rating" value="5" onClick="javascript:location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>'">
+                    </form>
+                    <?php
                 }
+            } // Vue utilisateur
                 ?>
-                    <span class="pull-right"><strong>Changez votre vote (x/5) :</strong> 
-                    <a class="rating1" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>" title="Noter le billet 1/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a class="rating2" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>" title="Noter le billet 2/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a class="rating3" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>" title="Noter le billet 3/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a class="rating4" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>" title="Noter le billet 4/5"><span class="glyphicon glyphicon-star"></span></a>
-                    <a class="rating5" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>" title="Noter le billet 5/5"><span class="glyphicon glyphicon-star"></span></a>
-                </span>
     </div>
     <div class="panel-footer">
         <strong>Tags&nbsp;:</strong>
