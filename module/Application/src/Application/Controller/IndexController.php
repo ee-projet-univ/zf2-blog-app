@@ -33,7 +33,7 @@ class IndexController extends AbstractActionController
 
     public function searchAction()
     {
-        $tags = $this->getEvent()->getRouteMatch()->getParam('tag');
+        $tags = $this->getRequest()->isPost() ? $this->params()->fromPost('tag') : $this->params('tag');
         $filteredPosts = $this->getServiceLocator()->get('TagService')->getPostArrayByTagNames($tags);
         $nb_pages = ceil($this->getServiceLocator()->get('PostService')->countPostsByPostArray($filteredPosts) / 5);
 
