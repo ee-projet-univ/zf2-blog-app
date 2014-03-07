@@ -19,4 +19,8 @@ class TagService implements \Zend\ServiceManager\ServiceLocatorAwareInterface {
         }
         return $t;
     }
+
+    public function getMostPopularTags() {
+        return $this->getServiceLocator()->get('TagRepository')->createQueryBuilder('t')->select('COUNT(t.name) as compteur, t.name')->addOrderBy('t.name', 'ASC')->addGroupBy('t.name')->getQuery()->getResult();
+    }
 }

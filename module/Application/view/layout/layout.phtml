@@ -106,32 +106,19 @@
                             <!-- Exemples de tags, TODO: à générer -->
                             <h3>Tags populaires</h3>
                             <p>
-                                <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'lolcat')); ?>">lolcat</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'panda')); ?>">panda</a> 
-                                <a href="<?php echo $this->url('search', array('tag' => 'pingouin')); ?>">pingouin</a>
-                                <a href="<?php echo $this->url('search', array('tag' => 'yolo')); ?>">yolo</a>
+                                <?php
+                                foreach($this->layout()->tags as $tag) {
+                                    ?>
+                                    <a href="<?php echo $this->url('search', array('tag' => $tag['name'])); ?>"><?php echo $tag['name']; ?></a>
+                                    <?php
+                                }
+                                ?>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr />
             <footer>
                 <div class="container">
                     <div class="col-md-12">

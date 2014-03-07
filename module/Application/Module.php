@@ -19,6 +19,7 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        $e->getViewModel()->tags = $e->getApplication()->getServiceManager()->get('TagService')->getMostPopularTags();
     }
 
     public function getConfig()
