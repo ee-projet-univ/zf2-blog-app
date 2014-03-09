@@ -45,20 +45,22 @@ use \Michelf\Markdown;
         if($this->zfcUserIdentity())
         {
             ?>
-            <form class="rating" name="basic">
-                <input type="radio" name="rating" value="1"<?php echo ($rating && $rating->getValue() == 1) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>'">
-                <input type="radio" name="rating" value="2"<?php echo ($rating && $rating->getValue() == 2) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>'">
-                <input type="radio" name="rating" value="3"<?php echo ($rating && $rating->getValue() == 3) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>'">
-                <input type="radio" name="rating" value="4"<?php echo ($rating && $rating->getValue() == 4) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>'">
-                <input type="radio" name="rating" value="5"<?php echo ($rating && $rating->getValue() == 5) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>'">
-                <?php
-                if($rating) {
-                    ?>                    
-                    <a style="color: red; font-weight: bold;" title="Supprimer votre note" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 0)); ?>">⨯</a>
+            <span class="pull-right">
+                <form class="rating" name="basic">
+                    <input type="radio" name="rating" value="1"<?php echo ($rating && $rating->getValue() == 1) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>'">
+                    <input type="radio" name="rating" value="2"<?php echo ($rating && $rating->getValue() == 2) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>'">
+                    <input type="radio" name="rating" value="3"<?php echo ($rating && $rating->getValue() == 3) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>'">
+                    <input type="radio" name="rating" value="4"<?php echo ($rating && $rating->getValue() == 4) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>'">
+                    <input type="radio" name="rating" value="5"<?php echo ($rating && $rating->getValue() == 5) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>'">
                     <?php
-                }
-                ?>
-            </form>
+                    if($rating) {
+                        ?>                    
+                        <a style="color: red; font-weight: bold;" title="Supprimer votre note" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 0)); ?>">⨯</a>
+                        <?php
+                    }
+                    ?>
+                </form>
+            </span>
             <script type="text/javascript">
             document.body.onload = function() {
                 MooStarRatingImages.defaultImagesFolder = 'https://github.com/lorenzos/MooStarRating/raw/master/Graphics';
