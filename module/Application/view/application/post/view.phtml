@@ -44,6 +44,11 @@ use \Michelf\Markdown;
 
         if($this->zfcUserIdentity())
         {
+            if(!$rating) {
+            ?>                    
+                <strong>Donnez une note à l'article&nbsp;:</strong>
+            <?php
+                }
             ?>
             <span class="pull-right">
                 <form class="rating" name="basic">
