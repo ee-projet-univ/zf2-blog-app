@@ -105,15 +105,44 @@
 
                             <!-- Exemples de tags, TODO: à générer -->
                             <h3>Tags populaires</h3>
-                            <p>
-                                <?php
-                                foreach($this->layout()->tags as $tag) {
-                                    ?>
-                                    <a href="<?php echo $this->url('search', array('tag' => $tag['name'])); ?>"><?php echo $tag['name']; ?></a>
+                            <div id="tagcloud">
+                                <p>
                                     <?php
-                                }
-                                ?>
-                            </p>
+
+                                    $frequency_list = array();
+
+                                    foreach($this->layout()->tags as $tag) {
+                                        $tagname = strtolower($tag['name']);
+                                        if (array_key_exists($tagname, $frequency_list)) {
+                                            ++$frequency_list[$tagname];
+                                        }
+                                        else {
+                                            $frequency_list[$tagname] = 1;
+                                        }	 
+                                    }
+
+                                    foreach($frequency_list as $k => $v) {
+                                        if ($v <= 1):
+                                          $class = 'smallest';
+                                        elseif ($v >= 2 and $v < 5):
+                                          $class = 'small';
+                                        elseif ($v >= 5 and $v < 10):
+                                          $class = 'medium';
+                                        elseif ($v >= 10):
+                                          $class = 'large';
+                                        else:
+                                        $class = 'largest';
+                                        endif;
+                                   
+                                        echo $v;?>
+                                    <span class="<?php echo $class; ?>">
+                                      <a href="<?php echo $this->url('search', array('tag' => $k)); ?>"><?php echo $k; ?></a>
+                                    </span>
+                                        <?php
+                                    }
+                                    ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

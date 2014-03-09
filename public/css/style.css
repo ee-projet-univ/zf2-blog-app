@@ -21,6 +21,34 @@ hr {
     text-align: center; 
 }
 
+#tagcloud a:hover {
+    text-decoration: underline;
+}
+ 
+#tagcloud span {
+    padding: 4px;
+}
+ 
+#tagcloud .smallest {
+    font-size: x-small;
+}
+ 
+#tagcloud .small {
+    font-size: small;
+}
+ 
+#tagcloud .medium {
+    font-size:medium;
+}
+ 
+#tagcloud .large {
+    font-size:large;
+}
+ 
+#tagcloud .largest {
+    font-size:larger;
+}
+
 .btn-success {
   background-color: #57a900;
   background-image: -moz-linear-gradient(top, #70d900, #57a900);
