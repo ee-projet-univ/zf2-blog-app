@@ -45,27 +45,25 @@ use \Michelf\Markdown;
         if($this->zfcUserIdentity())
         {
             if(!$rating) {
-            ?>                    
+                ?>                    
                 <strong>Donnez une note à l'article&nbsp;:</strong>
-            <?php
-                }
+                <?php
+            }
             ?>
-            <span class="pull-right">
-                <form class="rating" name="basic">
-                    <input type="radio" name="rating" value="1"<?php echo ($rating && $rating->getValue() == 1) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>'">
-                    <input type="radio" name="rating" value="2"<?php echo ($rating && $rating->getValue() == 2) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>'">
-                    <input type="radio" name="rating" value="3"<?php echo ($rating && $rating->getValue() == 3) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>'">
-                    <input type="radio" name="rating" value="4"<?php echo ($rating && $rating->getValue() == 4) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>'">
-                    <input type="radio" name="rating" value="5"<?php echo ($rating && $rating->getValue() == 5) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>'">
+            <form class="rating pull-right" name="basic">
+                <input type="radio" name="rating" value="1"<?php echo ($rating && $rating->getValue() == 1) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 1)); ?>'">
+                <input type="radio" name="rating" value="2"<?php echo ($rating && $rating->getValue() == 2) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 2)); ?>'">
+                <input type="radio" name="rating" value="3"<?php echo ($rating && $rating->getValue() == 3) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 3)); ?>'">
+                <input type="radio" name="rating" value="4"<?php echo ($rating && $rating->getValue() == 4) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 4)); ?>'">
+                <input type="radio" name="rating" value="5"<?php echo ($rating && $rating->getValue() == 5) ? ' checked="checked"' : ''; ?> onclick="location.href='<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 5)); ?>'">
+                <?php
+                if($rating) {
+                    ?>                    
+                    <a style="color: red; font-weight: bold;" title="Supprimer votre note" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 0)); ?>">⨯</a>
                     <?php
-                    if($rating) {
-                        ?>                    
-                        <a style="color: red; font-weight: bold;" title="Supprimer votre note" href="<?php echo $this->url('post-rate', array('pid' => $post->getId(), 'rating' => 0)); ?>">⨯</a>
-                        <?php
-                    }
-                    ?>
-                </form>
-            </span>
+                }
+                ?>
+            </form>
             <script type="text/javascript">
             document.body.onload = function() {
                 MooStarRatingImages.defaultImagesFolder = 'https://github.com/lorenzos/MooStarRating/raw/master/Graphics';
@@ -132,7 +130,7 @@ use \Michelf\Markdown;
                                 <p><em>Dernière modification le <?php echo $c->getDateEdit()->format('d\/m\/Y\ \à\ H\:i'); ?></em></p>
                                 <?php
                             }
-                            if ($c->getAuthor()->getId() == $userme->getId() || $userme->getRoles()[0]->getRoleId() == "administrator")
+                            if($this->zfcUserIdentity() && ($c->getAuthor()->getId() == $userme->getId() || $userme->getRoles()[0]->getRoleId() == "administrator"))
                             {
                                 echo '<p><a class="btn glyphicon glyphicon-remove pull-right" title="Supprimer" href="'.$this->url('comm-ud', array('action' => 'delete','cid' => $c->getId())).'"></a>';
                                 echo '<a class="btn glyphicon glyphicon-pencil pull-right" title="Éditer" href="'.$this->url('comm-ud', array('action' => 'update','cid' => $c->getId())).'"></a></p>';

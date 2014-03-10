@@ -30,23 +30,23 @@ hr {
 }
  
 #tagcloud .smallest {
-    font-size: x-small;
+    font-size: 80%;
 }
  
 #tagcloud .small {
-    font-size: small;
+    font-size: 110%;
 }
  
 #tagcloud .medium {
-    font-size:medium;
+    font-size: 140%;
 }
  
 #tagcloud .large {
-    font-size:large;
+    font-size: 170%;
 }
  
 #tagcloud .largest {
-    font-size:larger;
+    font-size: 200%;
 }
 
 .btn-success {

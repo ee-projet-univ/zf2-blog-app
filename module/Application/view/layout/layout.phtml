@@ -102,29 +102,26 @@
                                 </div>
                             </form>
                             <hr />
-
-                            <!-- Exemples de tags, TODO: à générer -->
                             <h3>Tags populaires</h3>
                             <div id="tagcloud">
                                 <p>
                                     <?php
-
                                     foreach($this->layout()->tags as $tag) {
                                         if ($tag['compteur'] <= 1):
-                                          $class = 'smallest';
+                                            $class = 'smallest';
                                         elseif ($tag['compteur'] >= 2 and $tag['compteur'] < 5):
-                                          $class = 'small';
+                                            $class = 'small';
                                         elseif ($tag['compteur'] >= 5 and $tag['compteur'] < 10):
-                                          $class = 'medium';
+                                            $class = 'medium';
                                         elseif ($tag['compteur'] >= 10):
-                                          $class = 'large';
+                                            $class = 'large';
                                         else:
-                                        $class = 'largest';
+                                            $class = 'largest';
                                         endif;
-                                    ?>
-                                    <span class="<?php echo $class; ?>">
-                                      <a href="<?php echo $this->url('search', array('tag' => $tag)); ?>"><?php echo $tag['name']; ?> <span class="label label-info"><?php echo $tag['compteur'] ?></span></a>
-                                    </span>
+                                        ?>
+                                        <span class="<?php echo $class; ?>">
+                                            <a href="<?php echo $this->url('search', array('tag' => $tag['name'])); ?>"><?php echo $tag['name']; ?>&nbsp;<span class="label label-info"><?php echo $tag['compteur'] ?></span></a>
+                                        </span>
                                         <?php
                                     }
                                     ?>
@@ -143,7 +140,7 @@
                                 <span class="text-center" style="font-family: Verdana">
                                     <div class="alert alert-success" style="margin : 0px;">
                                         <p>
-                                            Projet d'année Licence 3 Informatique IUP MIAGE par Maxime BRENGUIER, Raphaël CANOVAS et Julien PAPASIAN
+                                            Projet d’année Licence 3 Informatique IUP MIAGE par Maxime BRENGUIER, Raphaël CANOVAS et Julien PAPASIAN
                                         </p>
                                         <p>
                                             Encadrés par Etienne COLONDON et Émilien ESCALLE
