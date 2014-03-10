@@ -120,7 +120,7 @@
                                         endif;
                                         ?>
                                         <span class="<?php echo $class; ?>">
-                                            <a href="<?php echo $this->url('search', array('tag' => $tag['name'])); ?>"><?php echo $tag['name']; ?>&nbsp;<span class="label label-info"><?php echo $tag['compteur'] ?></span></a>
+                                            <a href="<?php echo $this->url('search', array('tag' => $tag['name'])); ?>" title="<?php echo $tag['compteur'] . ' billet'.(($tag['compteur'] != 1) ? 's' : '').' associé'.(($tag['compteur'] != 1) ? 's' : '').' à ce mot clé'; ?>"><?php echo $tag['name']; ?></a>
                                         </span>
                                         <?php
                                     }
